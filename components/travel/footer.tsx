@@ -1,8 +1,10 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, useInView } from "framer-motion"
+import { useRef } from "react"
 import Link from "next/link"
-import { Instagram, Twitter, Facebook, Youtube, MapPin, Mail, Phone } from "lucide-react"
+import { Instagram, Twitter, Facebook, Youtube, MapPin, Mail, Phone, ArrowUpRight } from "lucide-react"
+import { MagneticButton } from "./magnetic-button"
 
 const footerLinks = {
   destinations: [
@@ -36,53 +38,103 @@ const socialLinks = [
 ]
 
 export function Footer() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: "-100px" })
+
   return (
-    <footer className="bg-foreground text-background">
-      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-20">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-5">
+    <footer ref={ref} className="relative bg-foreground text-background overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-72 h-72 bg-accent/5 rounded-full blur-3xl" />
+      </div>
+
+      <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-24">
+        {/* Top section with large CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+          transition={{ duration: 0.6 }}
+          className="mb-20 flex flex-col items-center text-center lg:flex-row lg:justify-between lg:text-left"
+        >
+          <div>
+            <h3 className="font-serif text-4xl font-bold text-background md:text-5xl lg:text-6xl">
+              Let&apos;s Plan Your
+              <br />
+              <span className="text-accent">Dream Trip</span>
+            </h3>
+          </div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mt-8 lg:mt-0"
+          >
+            <MagneticButton className="group flex items-center gap-3 rounded-full bg-white px-8 py-5 font-semibold text-foreground transition-all duration-300 hover:bg-primary hover:text-white">
+              Start Planning
+              <ArrowUpRight className="h-5 w-5 transition-transform group-hover:rotate-45" />
+            </MagneticButton>
+          </motion.div>
+        </motion.div>
+
+        {/* Divider */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="h-px bg-background/10 origin-left"
+        />
+
+        <div className="grid grid-cols-1 gap-12 pt-16 md:grid-cols-2 lg:grid-cols-5">
           {/* Brand Column */}
           <div className="lg:col-span-2">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
             >
               <Link href="/" className="inline-block">
                 <span className="font-serif text-3xl font-bold text-background">
                   Wanderlust
                 </span>
               </Link>
-              <p className="mt-4 max-w-sm text-background/70 leading-relaxed">
+              <p className="mt-6 max-w-sm text-background/60 leading-relaxed">
                 Crafting unforgettable journeys for travelers who seek authentic
                 experiences and meaningful connections around the world.
               </p>
 
               {/* Contact Info */}
-              <div className="mt-8 space-y-3">
-                <div className="flex items-center gap-3 text-background/70">
-                  <MapPin className="h-5 w-5" />
-                  <span>123 Travel Street, Adventure City, AC 12345</span>
-                </div>
-                <div className="flex items-center gap-3 text-background/70">
-                  <Mail className="h-5 w-5" />
-                  <span>hello@wanderlust.travel</span>
-                </div>
-                <div className="flex items-center gap-3 text-background/70">
-                  <Phone className="h-5 w-5" />
-                  <span>+1 (555) 123-4567</span>
-                </div>
+              <div className="mt-8 space-y-4">
+                {[
+                  { icon: MapPin, text: "123 Travel Street, Adventure City" },
+                  { icon: Mail, text: "hello@wanderlust.travel" },
+                  { icon: Phone, text: "+1 (555) 123-4567" },
+                ].map((item, index) => (
+                  <motion.div
+                    key={item.text}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                    transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+                    className="group flex items-center gap-3 text-background/60 hover:text-background transition-colors cursor-pointer"
+                  >
+                    <item.icon className="h-5 w-5 transition-transform group-hover:scale-110" />
+                    <span>{item.text}</span>
+                  </motion.div>
+                ))}
               </div>
 
               {/* Social Links */}
-              <div className="mt-8 flex gap-4">
-                {socialLinks.map((social) => (
+              <div className="mt-10 flex gap-3">
+                {socialLinks.map((social, index) => (
                   <motion.a
                     key={social.label}
                     href={social.href}
-                    whileHover={{ scale: 1.1, y: -2 }}
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
+                    transition={{ duration: 0.4, delay: 0.7 + index * 0.1 }}
+                    whileHover={{ scale: 1.1, y: -3 }}
                     whileTap={{ scale: 0.95 }}
-                    className="flex h-10 w-10 items-center justify-center rounded-full bg-background/10 text-background transition-colors hover:bg-background/20"
+                    className="flex h-12 w-12 items-center justify-center rounded-full bg-background/10 text-background transition-colors hover:bg-primary hover:text-white"
                     aria-label={social.label}
                   >
                     <social.icon className="h-5 w-5" />
@@ -97,23 +149,28 @@ export function Footer() {
             <motion.div
               key={title}
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 * (columnIndex + 1) }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.6, delay: 0.5 + columnIndex * 0.1 }}
             >
               <h3 className="text-sm font-semibold uppercase tracking-wider text-background">
                 {title}
               </h3>
-              <ul className="mt-6 space-y-3">
-                {links.map((link) => (
-                  <li key={link.name}>
+              <ul className="mt-6 space-y-4">
+                {links.map((link, linkIndex) => (
+                  <motion.li
+                    key={link.name}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
+                    transition={{ duration: 0.4, delay: 0.6 + columnIndex * 0.1 + linkIndex * 0.05 }}
+                  >
                     <Link
                       href={link.href}
-                      className="text-background/70 transition-colors hover:text-background"
+                      className="group inline-flex items-center gap-1 text-background/60 transition-colors hover:text-background"
                     >
                       {link.name}
+                      <ArrowUpRight className="h-3 w-3 opacity-0 -translate-y-1 translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0" />
                     </Link>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
             </motion.div>
@@ -123,27 +180,38 @@ export function Footer() {
         {/* Bottom Bar */}
         <motion.div
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-background/10 pt-8 md:flex-row"
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="mt-20 flex flex-col items-center justify-between gap-6 border-t border-background/10 pt-8 md:flex-row"
         >
-          <p className="text-sm text-background/60">
+          <p className="text-sm text-background/50">
             &copy; {new Date().getFullYear()} Wanderlust Travel. All rights reserved.
           </p>
-          <div className="flex gap-6 text-sm text-background/60">
-            <Link href="#" className="hover:text-background transition-colors">
-              Terms
-            </Link>
-            <Link href="#" className="hover:text-background transition-colors">
-              Privacy
-            </Link>
-            <Link href="#" className="hover:text-background transition-colors">
-              Cookies
-            </Link>
+          <div className="flex gap-8 text-sm text-background/50">
+            {["Terms", "Privacy", "Cookies"].map((item) => (
+              <Link 
+                key={item} 
+                href="#" 
+                className="hover:text-background transition-colors"
+              >
+                {item}
+              </Link>
+            ))}
           </div>
         </motion.div>
       </div>
+
+      {/* Large background text */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 0.02 } : { opacity: 0 }}
+        transition={{ duration: 1, delay: 0.5 }}
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none select-none"
+      >
+        <span className="font-serif text-[20vw] font-bold text-background whitespace-nowrap">
+          WANDERLUST
+        </span>
+      </motion.div>
     </footer>
   )
 }

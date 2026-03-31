@@ -2,6 +2,7 @@ import { Header } from "@/components/travel/header"
 import { Hero } from "@/components/travel/hero"
 import { Destinations } from "@/components/travel/destinations"
 import { HorizontalGallery } from "@/components/travel/horizontal-gallery"
+import { Places } from "@/components/travel/places"
 import { Experiences } from "@/components/travel/experiences"
 import { Testimonials } from "@/components/travel/testimonials"
 import { CTA } from "@/components/travel/cta"
@@ -20,6 +21,7 @@ export default function TravelHomePage() {
         <Hero />
         <Destinations />
         <HorizontalGallery />
+        <Places />
         <Experiences />
         <Testimonials />
         <CTA />

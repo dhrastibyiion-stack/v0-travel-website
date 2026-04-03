@@ -3,7 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useRef, useState } from "react"
 import Image from "next/image"
-import { Send, Check, Sparkles } from "lucide-react"
+import { Send, Check, Sparkles, Mail, Phone, MapPin, Clock } from "lucide-react"
 import { TextReveal } from "./text-reveal"
 import { MagneticButton } from "./magnetic-button"
 
@@ -88,7 +88,7 @@ export function CTA() {
 
           {/* Content */}
           <div className="relative px-8 py-20 md:px-16 md:py-28 lg:py-36">
-            <div className="mx-auto max-w-3xl text-center">
+            <div className="mx-auto max-w-5xl text-center">
               {/* Badge */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -98,14 +98,14 @@ export function CTA() {
                 className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 mb-8"
               >
                 <Sparkles className="h-4 w-4 text-white" />
-                <span className="text-sm font-medium text-white">Special Offers Await</span>
+                <span className="text-sm font-medium text-white">Get In Touch</span>
               </motion.div>
 
               <h2 className="font-serif text-4xl font-bold text-white md:text-5xl lg:text-7xl">
-                <TextReveal delay={0.1}>Ready for Your</TextReveal>
+                <TextReveal delay={0.1}>Contact</TextReveal>
                 <br />
                 <span className="text-accent">
-                  <TextReveal delay={0.3}>Next Adventure?</TextReveal>
+                  <TextReveal delay={0.3}>Us</TextReveal>
                 </span>
               </h2>
 
@@ -114,19 +114,89 @@ export function CTA() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="mt-8 text-lg text-white/80 md:text-xl leading-relaxed"
+                className="mt-6 text-lg text-white/80 md:text-xl leading-relaxed"
               >
-                Subscribe to our newsletter and be the first to know about
-                exclusive deals, new destinations, and travel tips.
+                Have questions about your next trip? We are here to help you
+                plan the perfect getaway.
               </motion.p>
+
+              {/* Contact Info Cards */}
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
+              >
+                {[
+                  {
+                    icon: Mail,
+                    label: "Email Us",
+                    value: "hello@wanderlust.com",
+                    href: "mailto:hello@wanderlust.com",
+                    isLink: true,
+                  },
+                  {
+                    icon: Phone,
+                    label: "Call Us",
+                    value: "+1 (555) 123-4567",
+                    href: "tel:+15551234567",
+                    isLink: true,
+                  },
+                  {
+                    icon: MapPin,
+                    label: "Visit Us",
+                    value: "123 Travel Lane, Suite 100, New York, NY 10001",
+                    isLink: false,
+                  },
+                  {
+                    icon: Clock,
+                    label: "Working Hours",
+                    value: "Mon - Sat: 9AM - 8PM",
+                    isLink: false,
+                  },
+                ].map((item, index) => {
+                  const Component = item.isLink ? motion.a : motion.div
+                  return (
+                    <Component
+                      key={item.label}
+                      {...(item.isLink ? { href: item.href } : {})}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
+                      className="group flex flex-col items-center gap-3 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 p-6 transition-all duration-300 hover:bg-white/15 hover:border-white/20"
+                    >
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-accent/20">
+                        <item.icon className="h-5 w-5 text-accent" />
+                      </div>
+                      <span className="text-sm font-medium text-white/60">{item.label}</span>
+                      <span className="text-sm font-semibold text-white text-center leading-snug">{item.value}</span>
+                    </Component>
+                  )
+                })}
+              </motion.div>
+
+              {/* Divider */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                className="my-12 flex items-center gap-4"
+              >
+                <div className="h-px flex-1 bg-white/20" />
+                <span className="text-sm text-white/40">or subscribe to our newsletter</span>
+                <div className="h-px flex-1 bg-white/20" />
+              </motion.div>
 
               {/* Email Form */}
               <motion.form
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                className="mt-12 flex flex-col gap-4 sm:flex-row sm:justify-center"
+                transition={{ duration: 0.6, delay: 0.9 }}
+                className="flex flex-col gap-4 sm:flex-row sm:justify-center"
                 onSubmit={handleSubmit}
               >
                 <div className="relative flex-1 sm:max-w-md">
@@ -177,7 +247,7 @@ export function CTA() {
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.6 }}
+                transition={{ duration: 0.6, delay: 1.0 }}
                 className="mt-6 text-sm text-white/50"
               >
                 Join 10,000+ travelers. No spam, unsubscribe anytime.
@@ -188,10 +258,10 @@ export function CTA() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.7 }}
+                transition={{ duration: 0.6, delay: 1.1 }}
                 className="mt-12 flex flex-wrap items-center justify-center gap-8"
               >
-                {["Trusted by 10K+", "5-Star Rated", "24/7 Support"].map((badge, index) => (
+                {["Trusted by 10K+", "5-Star Rated", "24/7 Support"].map((badge) => (
                   <div key={badge} className="flex items-center gap-2 text-white/60">
                     <div className="h-2 w-2 rounded-full bg-accent" />
                     <span className="text-sm font-medium">{badge}</span>

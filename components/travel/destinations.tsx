@@ -6,59 +6,11 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowUpRight, Star } from "lucide-react"
 import { TextReveal } from "./text-reveal"
+import { destinations as allDestinations } from "@/lib/destinations-data"
 
-const destinations = [
-  {
-    id: "santorini",
-    name: "Santorini",
-    country: "Greece",
-    image: "/images/santorini.jpg",
-    price: "$1,299",
-    rating: 4.9,
-    description: "Iconic sunsets and white-washed villages",
-  },
-  {
-    id: "bali",
-    name: "Bali",
-    country: "Indonesia",
-    image: "/images/bali.jpg",
-    price: "$899",
-    rating: 4.8,
-    description: "Tropical paradise with ancient temples",
-  },
-  {
-    id: "tokyo",
-    name: "Tokyo",
-    country: "Japan",
-    image: "/images/tokyo.jpg",
-    price: "$1,499",
-    rating: 4.9,
-    description: "Where tradition meets innovation",
-  },
-  {
-    id: "patagonia",
-    name: "Patagonia",
-    country: "Argentina",
-    image: "/images/patagonia.jpg",
-    price: "$1,799",
-    rating: 4.7,
-    description: "Untamed wilderness and glacial beauty",
-  },
-  {
-    id: "marrakech",
-    name: "Marrakech",
-    country: "Morocco",
-    image: "/images/morocco.jpg",
-    price: "$749",
-    rating: 4.6,
-    description: "Vibrant souks and exotic culture",
-  },
-]
-
-function DestinationCard({ destination, index, isFeatured = false }: { 
-  destination: typeof destinations[0]
+function DestinationCard({ destination, index }: { 
+  destination: typeof allDestinations[0]
   index: number
-  isFeatured?: boolean 
 }) {
   const ref = useRef<HTMLDivElement>(null)
   const [isHovered, setIsHovered] = useState(false)
@@ -95,17 +47,15 @@ function DestinationCard({ destination, index, isFeatured = false }: {
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={handleMouseLeave}
-        className={`group relative overflow-hidden rounded-3xl cursor-pointer ${
-          isFeatured ? "col-span-1 row-span-2 md:col-span-2 lg:col-span-2" : ""
-        }`}
+        className="group relative overflow-hidden rounded-3xl cursor-pointer aspect-[4/3]"
         data-cursor="View"
       >
         <motion.div 
           style={{ x: springX, y: springY }}
-          className={`relative ${isFeatured ? "aspect-[4/3] md:aspect-auto md:h-full min-h-[400px] lg:min-h-[600px]" : "aspect-[4/3]"}`}
+          className="relative aspect-[4/3]"
         >
           <Image
-            src={destination.image}
+            src={destination.heroImage}
             alt={destination.name}
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -123,7 +73,7 @@ function DestinationCard({ destination, index, isFeatured = false }: {
           />
 
           {/* Content */}
-          <div className={`absolute inset-0 flex flex-col justify-end ${isFeatured ? "p-6 md:p-8 lg:p-10" : "p-5 md:p-6"}`}>
+          <div className="absolute inset-0 flex flex-col justify-end p-5 md:p-6">
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
@@ -131,64 +81,57 @@ function DestinationCard({ destination, index, isFeatured = false }: {
               transition={{ delay: 0.2 }}
             >
               <div className="flex items-center gap-2 mb-2">
-                <Star className={`fill-accent text-accent ${isFeatured ? "h-4 w-4 md:h-5 md:w-5" : "h-4 w-4"}`} />
-                <span className={`font-medium text-white ${isFeatured ? "text-sm md:text-base" : "text-sm"}`}>
+                <Star className="fill-accent text-accent h-4 w-4" />
+                <span className="font-medium text-white text-sm">
                   {destination.rating}
                 </span>
               </div>
               
-              <h3 className={`font-serif font-bold text-white ${
-                isFeatured ? "text-3xl md:text-4xl lg:text-5xl" : "text-xl md:text-2xl"
-              }`}>
+              <h3 className="font-serif font-bold text-white text-xl md:text-2xl">
                 {destination.name}
               </h3>
               
-              <p className={`text-white/80 ${isFeatured ? "text-sm md:text-base" : "text-sm"}`}>
+              <p className="text-white/80 text-sm">
                 {destination.country}
               </p>
               
-              {isFeatured && (
-                <p className="mt-3 text-white/70 max-w-md text-sm md:text-base hidden sm:block">
-                  {destination.description}
-                </p>
-              )}
+              <p className="mt-2 text-white/70 text-sm">
+                {destination.tagline}
+              </p>
             </motion.div>
 
             <motion.div 
-              className={`flex items-center justify-between ${isFeatured ? "mt-6 md:mt-8" : "mt-4"}`}
+              className="flex items-center justify-between mt-4"
               initial={{ y: 20, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
             >
               <div>
-                <p className="text-xs text-white/60">{isFeatured ? "Starting from" : "From"}</p>
-                <p className={`font-bold text-white ${isFeatured ? "text-2xl md:text-3xl" : "text-lg md:text-xl"}`}>
+                <p className="text-xs text-white/60">From</p>
+                <p className="font-bold text-white text-lg md:text-xl">
                   {destination.price}
                 </p>
               </div>
               
-              <motion.div
+              <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                className={`flex items-center justify-center rounded-full transition-all duration-300 ${
-                  isFeatured 
-                    ? "h-12 w-12 md:h-14 md:w-14 bg-white text-foreground hover:bg-primary hover:text-white" 
-                    : "h-9 w-9 md:h-10 md:w-10 bg-white/20 backdrop-blur-sm text-white group-hover:bg-white group-hover:text-foreground"
-                }`}
+                className="flex items-center justify-center rounded-full transition-all duration-300 h-9 w-9 md:h-10 md:w-10 bg-white/20 backdrop-blur-sm text-white group-hover:bg-white group-hover:text-foreground cursor-pointer"
+                aria-label={`View ${destination.name}`}
               >
                 <motion.div
                   animate={{ rotate: isHovered ? 45 : 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <ArrowUpRight className={isFeatured ? "h-5 w-5 md:h-6 md:w-6" : "h-4 w-4 md:h-5 md:w-5"} />
+                  <ArrowUpRight className="h-4 w-4 md:h-5 md:w-5" />
                 </motion.div>
-              </motion.div>
+              </motion.button>
             </motion.div>
 
             {/* Progress bar animation */}
             <motion.div
-              className={`h-0.5 bg-white/30 mt-4 md:mt-6 origin-left ${isFeatured ? "" : "mt-3 md:mt-4"}`}
+              className="h-0.5 bg-white/30 mt-4 origin-left"
               initial={{ scaleX: 0 }}
               animate={{ scaleX: isHovered ? 1 : 0 }}
               transition={{ duration: 0.5 }}
@@ -242,14 +185,13 @@ export function Destinations() {
         {/* Destinations Grid */}
         <div
           ref={ref}
-          className="grid grid-cols-1 gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-3"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
         >
-          <DestinationCard destination={destinations[0]} index={0} isFeatured />
-          {destinations.slice(1).map((destination, index) => (
+          {allDestinations.slice(0, 11).map((destination, index) => (
             <DestinationCard 
               key={destination.id} 
               destination={destination} 
-              index={index + 1} 
+              index={index} 
             />
           ))}
         </div>

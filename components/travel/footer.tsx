@@ -3,30 +3,41 @@
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import Link from "next/link"
-import { Instagram, Twitter, Facebook, Youtube, MapPin, Mail, Phone, ArrowUpRight } from "lucide-react"
+import Image from "next/image"
+import { Instagram, Twitter, Facebook, Youtube, MapPin, Mail, Phone, ArrowUpRight, Star } from "lucide-react"
 import { MagneticButton } from "./magnetic-button"
+import { destinations } from "@/lib/destinations-data"
+
+const footerDestinations = destinations.slice(0, 8).map(d => ({
+  name: d.name,
+  href: `/destinations/${d.id}`,
+  image: d.heroImage,
+  country: d.country,
+  rating: d.rating,
+}))
 
 const footerLinks = {
-  destinations: [
-    { name: "Europe", href: "#" },
-    { name: "Asia", href: "#" },
-    { name: "Americas", href: "#" },
-    { name: "Africa", href: "#" },
-    { name: "Oceania", href: "#" },
+  experiences: [
+    { name: "Cultural Tours", href: "/experiences/cultural-tours" },
+    { name: "Adventure Trips", href: "/experiences/adventure-trips" },
+    { name: "Beach Getaways", href: "/experiences/beach-getaways" },
+    { name: "Eco Tourism", href: "/experiences/eco-tourism" },
+    { name: "Photography Tours", href: "/experiences/photography-tours" },
+    { name: "Culinary Journeys", href: "/experiences/culinary-journeys" },
   ],
   company: [
-    { name: "About Us", href: "#" },
-    { name: "Careers", href: "#" },
-    { name: "Press", href: "#" },
-    { name: "Blog", href: "#" },
-    { name: "Partners", href: "#" },
+    { name: "About Us", href: "/#about" },
+    { name: "Destinations", href: "/destinations" },
+    { name: "Experiences", href: "/#experiences" },
+    { name: "Reviews", href: "/#about" },
+    { name: "Contact", href: "/#contact" },
   ],
   support: [
-    { name: "Help Center", href: "#" },
-    { name: "Travel Insurance", href: "#" },
-    { name: "Cancellation Policy", href: "#" },
-    { name: "Terms of Service", href: "#" },
-    { name: "Privacy Policy", href: "#" },
+    { name: "Help Center", href: "/help-center" },
+    { name: "Travel Insurance", href: "/travel-insurance" },
+    { name: "Cancellation Policy", href: "/cancellation-policy" },
+    { name: "Terms of Service", href: "/terms-of-service" },
+    { name: "Privacy Policy", href: "/privacy-policy" },
   ],
 }
 
@@ -70,10 +81,12 @@ export function Footer() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-8 lg:mt-0"
           >
-            <MagneticButton className="group flex items-center gap-3 rounded-full bg-white px-8 py-5 font-semibold text-foreground transition-all duration-300 hover:bg-primary hover:text-white">
-              Start Planning
-              <ArrowUpRight className="h-5 w-5 transition-transform group-hover:rotate-45" />
-            </MagneticButton>
+            <Link href="/destinations">
+              <MagneticButton className="group flex items-center gap-3 rounded-full bg-white px-8 py-5 font-semibold text-foreground transition-all duration-300 hover:bg-primary hover:text-white">
+                Start Planning
+                <ArrowUpRight className="h-5 w-5 transition-transform group-hover:rotate-45" />
+              </MagneticButton>
+            </Link>
           </motion.div>
         </motion.div>
 
@@ -85,7 +98,50 @@ export function Footer() {
           className="h-px bg-background/10 origin-left"
         />
 
-        <div className="grid grid-cols-1 gap-12 pt-16 md:grid-cols-2 lg:grid-cols-5">
+        <div className="pt-16">
+          {/* Destinations Grid with Images */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="mb-16"
+          >
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-background mb-6">
+              Popular Destinations
+            </h3>
+            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
+              {footerDestinations.map((dest, index) => (
+                <motion.div
+                  key={dest.name}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.4, delay: 0.5 + index * 0.05 }}
+                >
+                  <Link href={dest.href} className="group block">
+                    <div className="relative aspect-square rounded-xl overflow-hidden">
+                      <Image
+                        src={dest.image}
+                        alt={dest.name}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                      <div className="absolute inset-0 flex flex-col justify-end p-2.5">
+                        <p className="font-semibold text-white text-xs leading-tight">{dest.name}</p>
+                        <div className="flex items-center gap-1 mt-0.5">
+                          <Star className="h-2.5 w-2.5 fill-accent text-accent" />
+                          <span className="text-white/80 text-[10px]">{dest.rating}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+
+        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-5">
           {/* Brand Column */}
           <div className="lg:col-span-2">
             <motion.div
@@ -153,9 +209,9 @@ export function Footer() {
               transition={{ duration: 0.6, delay: 0.5 + columnIndex * 0.1 }}
             >
               <h3 className="text-sm font-semibold uppercase tracking-wider text-background">
-                {title}
+                {title.charAt(0).toUpperCase() + title.slice(1)}
               </h3>
-              <ul className="mt-6 space-y-4">
+              <ul className="mt-6 space-y-3">
                 {links.map((link, linkIndex) => (
                   <motion.li
                     key={link.name}
@@ -188,13 +244,17 @@ export function Footer() {
             &copy; {new Date().getFullYear()} Wanderlust Travel. All rights reserved.
           </p>
           <div className="flex gap-8 text-sm text-background/50">
-            {["Terms", "Privacy", "Cookies"].map((item) => (
+            {[
+              { name: "Terms", href: "/terms-of-service" },
+              { name: "Privacy", href: "/privacy-policy" },
+              { name: "Cancellation", href: "/cancellation-policy" },
+            ].map((item) => (
               <Link 
-                key={item} 
-                href="#" 
+                key={item.name} 
+                href={item.href} 
                 className="hover:text-background transition-colors"
               >
-                {item}
+                {item.name}
               </Link>
             ))}
           </div>

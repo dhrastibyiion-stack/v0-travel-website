@@ -3,6 +3,7 @@
 import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion"
 import { useRef, useEffect, useState } from "react"
 import { Compass, Mountain, Waves, TreePalm, Camera, Utensils, ArrowRight } from "lucide-react"
+import Link from "next/link"
 import { TextReveal } from "./text-reveal"
 import { MagneticButton } from "./magnetic-button"
 
@@ -94,8 +95,20 @@ function ExperienceCard({ experience, index }: { experience: typeof experiences[
   const [isHovered, setIsHovered] = useState(false)
   const Icon = experience.icon
 
+  // Map experience titles to slugs
+  const slugMap: Record<string, string> = {
+    "Cultural Tours": "cultural-tours",
+    "Adventure Trips": "adventure-trips",
+    "Beach Getaways": "beach-getaways",
+    "Eco Tourism": "eco-tourism",
+    "Photography Tours": "photography-tours",
+    "Culinary Journeys": "culinary-journeys"
+  }
+  const slug = slugMap[experience.title] || experience.title.toLowerCase().replace(/\s+/g, '-')
+
   return (
-    <motion.div
+    <Link href={`/destinations?category=${slug}`}>
+      <motion.div
       initial={{ opacity: 0, y: 60 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
@@ -157,7 +170,8 @@ function ExperienceCard({ experience, index }: { experience: typeof experiences[
           transition={{ duration: 0.4 }}
         />
       </motion.div>
-    </motion.div>
+      </motion.div>
+    </Link>
   )
 }
 

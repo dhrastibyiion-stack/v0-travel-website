@@ -321,12 +321,14 @@ function OverviewSection({ destination }: { destination: NonNullable<ReturnType<
                 </div>
                 <p className="text-primary-foreground/80 mb-6">{destination.duration}</p>
                 
-                <Button 
-                  size="lg" 
-                  className="w-full bg-white text-primary hover:bg-white/90 font-semibold"
-                >
-                  Book This Trip
-                </Button>
+                <Link href={`/destinations/${destination.id}/book`}>
+                  <Button 
+                    size="lg" 
+                    className="w-full bg-white text-primary hover:bg-white/90 font-semibold"
+                  >
+                    Book This Trip
+                  </Button>
+                </Link>
                 
                 <button className="w-full mt-3 flex items-center justify-center gap-2 text-primary-foreground/80 hover:text-white transition-colors">
                   <Heart className="h-4 w-4" />
@@ -454,7 +456,7 @@ function ItinerarySection({ itinerary }: { itinerary: { day: number; title: stri
 }
 
 // CTA Section
-function CTASection({ name }: { name: string }) {
+function CTASection({ name, slug }: { name: string; slug: string }) {
   return (
     <section className="py-16 md:py-24 bg-foreground text-background">
       <div className="mx-auto max-w-4xl px-6 lg:px-8 text-center">
@@ -482,10 +484,12 @@ function CTASection({ name }: { name: string }) {
           transition={{ delay: 0.2 }}
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
-          <Button size="lg" className="bg-white text-foreground hover:bg-white/90 px-8">
-            Book Now
-          </Button>
-          <Button size="lg" variant="outline" className="border-background/30 text-background hover:bg-background/10 px-8">
+          <Link href={`/destinations/${slug}/book`}>
+            <Button size="lg" className="bg-white text-foreground hover:bg-white/90 px-8">
+              Book Now
+            </Button>
+          </Link>
+          <Button size="lg" className="bg-white text-black hover:bg-white/90 px-8">
             Contact Us
           </Button>
         </motion.div>
@@ -510,7 +514,7 @@ export default function DestinationPage({ params }: { params: Promise<{ slug: st
       <OverviewSection destination={destination} />
       <IncludedSection included={destination.included} />
       <ItinerarySection itinerary={destination.itinerary} />
-      <CTASection name={destination.name} />
+      <CTASection name={destination.name} slug={destination.id} />
       
       {/* Back to Top */}
       <div className="py-8 text-center bg-background border-t border-border">

@@ -13,9 +13,27 @@ const galleryImages = [
     slug: "santorini",
   },
   {
+    src: "/images/santorini-2.jpg",
+    title: "Greek Paradise",
+    subtitle: "Santorini",
+    slug: "santorini",
+  },
+  {
     src: "/images/bali.jpg",
     title: "Bali Serenity",
     subtitle: "Indonesia",
+    slug: "bali",
+  },
+  {
+    src: "/images/bali-2.jpg",
+    title: "Tropical Escape",
+    subtitle: "Bali",
+    slug: "bali",
+  },
+  {
+    src: "/images/bali-3.jpg",
+    title: "Island Dreams",
+    subtitle: "Bali",
     slug: "bali",
   },
   {
@@ -25,14 +43,32 @@ const galleryImages = [
     slug: "tokyo",
   },
   {
-    src: "/images/patagonia.jpg",
-    title: "Patagonia Wild",
-    subtitle: "Argentina",
+    src: "/images/morocco.jpg",
+    title: "Marrakech Magic",
+    subtitle: "Morocco",
+    slug: "marrakech",
+  },
+  {
+    src: "/images/tokyo-3.jpg",
+    title: "Japanese Culture",
+    subtitle: "Tokyo",
+    slug: "tokyo",
+  },
+  {
+    src: "/images/morocco-2.jpg",
+    title: "Desert Wonders",
+    subtitle: "Morocco",
+    slug: "marrakech",
+  },
+  {
+    src: "/images/patagonia-2.jpg",
+    title: "Mountain Peaks",
+    subtitle: "Patagonia",
     slug: "patagonia",
   },
   {
-    src: "/images/morocco.jpg",
-    title: "Marrakech Magic",
+    src: "/images/morocco-3.jpg",
+    title: "Atlas Adventure",
     subtitle: "Morocco",
     slug: "marrakech",
   },
@@ -46,7 +82,7 @@ export function HorizontalGallery() {
     offset: ["start start", "end end"],
   })
 
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-60%"])
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-85%"])
 
   return (
     <section ref={containerRef} className="relative h-[200vh] md:h-[300vh] bg-foreground">

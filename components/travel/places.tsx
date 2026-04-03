@@ -66,7 +66,7 @@ export function Places() {
         >
           {places.map((place, index) => (
             <motion.div key={place.id} variants={itemVariants}>
-              <Link href={`/places/${place.id}`}>
+              <Link href={`/destinations?continent=${place.continent}`}>
                 <div className="group relative h-96 rounded-2xl overflow-hidden cursor-pointer bg-card shadow-lg hover:shadow-2xl transition-shadow duration-300">
                   {/* Image Container */}
                   <div className="relative w-full h-full">
@@ -147,7 +147,7 @@ export function Places() {
                           whileHover={{ x: 4 }}
                           className="bg-accent/20 hover:bg-accent/30 rounded-lg px-3 py-2 text-white text-sm font-semibold transition-colors"
                         >
-                          View Details →
+                          Explore →
                         </motion.div>
                       </motion.div>
                     </div>

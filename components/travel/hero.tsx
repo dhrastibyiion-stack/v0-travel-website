@@ -1,13 +1,18 @@
 "use client"
 
 import { motion, useScroll, useTransform } from "framer-motion"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 import { ChevronDown, MapPin, Calendar, Users, ArrowRight } from "lucide-react"
 import { MagneticButton } from "./magnetic-button"
 
 export function Hero() {
   const ref = useRef(null)
+  const router = useRouter()
+  const [searchPlace, setSearchPlace] = useState("")
+  const [searchDate, setSearchDate] = useState("")
+  const [searchTravelers, setSearchTravelers] = useState("")
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
@@ -166,6 +171,8 @@ export function Hero() {
                   <input
                     type="text"
                     placeholder="Search destinations"
+                    value={searchPlace}
+                    onChange={(e) => setSearchPlace(e.target.value)}
                     className="w-full bg-transparent text-sm text-white outline-none placeholder:text-white/50"
                   />
                 </div>
@@ -177,6 +184,8 @@ export function Hero() {
                   <input
                     type="text"
                     placeholder="Add dates"
+                    value={searchDate}
+                    onChange={(e) => setSearchDate(e.target.value)}
                     className="w-full bg-transparent text-sm text-white outline-none placeholder:text-white/50"
                   />
                 </div>
@@ -188,11 +197,21 @@ export function Hero() {
                   <input
                     type="text"
                     placeholder="Add guests"
+                    value={searchTravelers}
+                    onChange={(e) => setSearchTravelers(e.target.value)}
                     className="w-full bg-transparent text-sm text-white outline-none placeholder:text-white/50"
                   />
                 </div>
               </div>
               <MagneticButton
+                onClick={() => {
+                  const params = new URLSearchParams()
+                  if (searchPlace) params.set('search', searchPlace)
+                  if (searchDate) params.set('date', searchDate)
+                  if (searchTravelers) params.set('travelers', searchTravelers)
+                  const query = params.toString()
+                  router.push(`/destinations${query ? `?${query}` : ''}`)
+                }}
                 className="group flex items-center justify-center gap-2 rounded-xl bg-white px-8 py-4 text-sm font-semibold text-foreground transition-all duration-300 hover:bg-primary hover:text-white"
                 data-cursor="Search"
               >

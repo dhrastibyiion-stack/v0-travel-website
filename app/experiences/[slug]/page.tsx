@@ -193,7 +193,7 @@ function MainContent({ experience }: { experience: NonNullable<ReturnType<typeof
                     Book Now
                   </Button>
                 </a>
-                <a href="#contact">
+                <a href="/contact">
                   <Button variant="outline" className="w-full mt-3 rounded-full cursor-pointer">
                     Ask a Question
                   </Button>

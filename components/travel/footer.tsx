@@ -30,7 +30,7 @@ const footerLinks = {
     { name: "Destinations", href: "/destinations" },
     { name: "Experiences", href: "/#experiences" },
     { name: "Reviews", href: "/#about" },
-    { name: "Contact", href: "/#contact" },
+    { name: "Contact", href: "/contact" },
   ],
   support: [
     { name: "Help Center", href: "/help-center" },
@@ -161,22 +161,35 @@ export function Footer() {
 
               {/* Contact Info */}
               <div className="mt-8 space-y-4">
-                {[
-                  { icon: MapPin, text: "123 Travel Street, Adventure City" },
-                  { icon: Mail, text: "hello@wanderlust.travel" },
-                  { icon: Phone, text: "+1 (555) 123-4567" },
-                ].map((item, index) => (
-                  <motion.div
-                    key={item.text}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                    transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                    className="group flex items-center gap-3 text-background/60 hover:text-background transition-colors cursor-pointer"
-                  >
-                    <item.icon className="h-5 w-5 transition-transform group-hover:scale-110" />
-                    <span>{item.text}</span>
-                  </motion.div>
-                ))}
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                  transition={{ duration: 0.5, delay: 0.5 }}
+                  className="group flex items-center gap-3 text-background/60 hover:text-background transition-colors"
+                >
+                  <MapPin className="h-5 w-5 transition-transform group-hover:scale-110" />
+                  <span>123 Travel Street, Adventure City</span>
+                </motion.div>
+                <motion.a
+                  href="mailto:hello@wanderlust.travel"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                  transition={{ duration: 0.5, delay: 0.6 }}
+                  className="group flex items-center gap-3 text-background/60 hover:text-background transition-colors cursor-pointer"
+                >
+                  <Mail className="h-5 w-5 transition-transform group-hover:scale-110" />
+                  <span>hello@wanderlust.travel</span>
+                </motion.a>
+                <motion.a
+                  href="tel:+15551234567"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                  transition={{ duration: 0.5, delay: 0.7 }}
+                  className="group flex items-center gap-3 text-background/60 hover:text-background transition-colors cursor-pointer"
+                >
+                  <Phone className="h-5 w-5 transition-transform group-hover:scale-110" />
+                  <span>+1 (555) 123-4567</span>
+                </motion.a>
               </div>
 
               {/* Social Links */}

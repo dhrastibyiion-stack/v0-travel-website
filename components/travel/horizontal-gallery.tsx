@@ -4,75 +4,14 @@ import { motion, useScroll, useTransform } from "framer-motion"
 import { useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { destinations } from "@/lib/destinations-data"
 
-const galleryImages = [
-  {
-    src: "/images/santorini.jpg",
-    title: "Santorini Sunsets",
-    subtitle: "Greece",
-    slug: "santorini",
-  },
-  {
-    src: "/images/santorini-2.jpg",
-    title: "Greek Paradise",
-    subtitle: "Santorini",
-    slug: "santorini",
-  },
-  {
-    src: "/images/bali.jpg",
-    title: "Bali Serenity",
-    subtitle: "Indonesia",
-    slug: "bali",
-  },
-  {
-    src: "/images/bali-2.jpg",
-    title: "Tropical Escape",
-    subtitle: "Bali",
-    slug: "bali",
-  },
-  {
-    src: "/images/bali-3.jpg",
-    title: "Island Dreams",
-    subtitle: "Bali",
-    slug: "bali",
-  },
-  {
-    src: "/images/tokyo.jpg",
-    title: "Tokyo Nights",
-    subtitle: "Japan",
-    slug: "tokyo",
-  },
-  {
-    src: "/images/morocco.jpg",
-    title: "Marrakech Magic",
-    subtitle: "Morocco",
-    slug: "marrakech",
-  },
-  {
-    src: "/images/tokyo-3.jpg",
-    title: "Japanese Culture",
-    subtitle: "Tokyo",
-    slug: "tokyo",
-  },
-  {
-    src: "/images/morocco-2.jpg",
-    title: "Desert Wonders",
-    subtitle: "Morocco",
-    slug: "marrakech",
-  },
-  {
-    src: "/images/patagonia-2.jpg",
-    title: "Mountain Peaks",
-    subtitle: "Patagonia",
-    slug: "patagonia",
-  },
-  {
-    src: "/images/morocco-3.jpg",
-    title: "Atlas Adventure",
-    subtitle: "Morocco",
-    slug: "marrakech",
-  },
-]
+const galleryImages = destinations.slice(0, 14).map((destination) => ({
+  src: destination.heroImage,
+  title: destination.name,
+  subtitle: destination.country,
+  slug: destination.id,
+}))
 
 export function HorizontalGallery() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -82,10 +21,10 @@ export function HorizontalGallery() {
     offset: ["start start", "end end"],
   })
 
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-85%"])
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"])
 
   return (
-    <section ref={containerRef} className="relative h-[200vh] md:h-[300vh] bg-foreground">
+    <section ref={containerRef} className="relative h-[400vh] md:h-[700vh] bg-foreground">
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
         {/* Section Header */}
         <div className="absolute left-4 md:left-8 top-1/2 z-10 -translate-y-1/2 lg:left-16">
@@ -111,7 +50,7 @@ export function HorizontalGallery() {
         {/* Horizontal Scroll Container */}
         <motion.div 
           style={{ x }} 
-          className="flex gap-4 md:gap-6 pl-20 md:pl-32 pr-8 lg:gap-10 lg:pl-48"
+          className="flex gap-2 pl-20 md:pl-32 pr-8 lg:pl-48"
         >
           {galleryImages.map((image, index) => (
             <Link key={index} href={`/destinations/${image.slug}`}>

@@ -5,15 +5,22 @@ import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-
 import { Menu, X, ArrowUpRight } from "lucide-react"
 import Link from "next/link"
 import { MagneticButton } from "./magnetic-button"
+import { LanguageSelector } from "./language-selector"
+import { CurrencyConverter } from "./currency-converter"
 
 const navLinks = [
-  { name: "Destinations", href: "#destinations" },
-  { name: "Experiences", href: "#experiences" },
-  { name: "About", href: "#about" },
-  { name: "Contact", href: "#contact" },
+  { name: "Destinations", href: "/destinations" },
+  { name: "Experiences", href: "/#experiences" },
+  { name: "Blog", href: "/blog" },
+  { name: "About", href: "/about" },
+  { name: "Contact", href: "/contact" },
 ]
 
-export function Header() {
+interface HeaderProps {
+  variant?: 'default' | 'dark'
+}
+
+export function Header({ variant = 'default' }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [hidden, setHidden] = useState(false)
@@ -78,8 +85,8 @@ export function Header() {
         animate={{ y: hidden ? -100 : 0 }}
         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled
-            ? "bg-background/80 backdrop-blur-xl shadow-sm border-b border-border/50"
+          isScrolled || variant === 'dark'
+            ? "bg-white/80 backdrop-blur-xl shadow-sm border-b border-black/10"
             : "bg-transparent"
         }`}
       >
@@ -94,7 +101,7 @@ export function Header() {
               <Link href="/" className="flex items-center gap-2 group">
                 <motion.span 
                   className={`font-serif text-2xl font-bold tracking-tight transition-colors duration-300 ${
-                    isScrolled ? "text-foreground" : "text-white"
+                    isScrolled || variant === 'dark' ? "text-black" : "text-white"
                   }`}
                   whileHover={{ scale: 1.02 }}
                 >
@@ -105,6 +112,12 @@ export function Header() {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-1">
+              {/* Language & Currency Selectors */}
+              <div className="flex items-center gap-2 mr-4">
+                <LanguageSelector isScrolled={isScrolled} variant={variant} />
+                <CurrencyConverter isScrolled={isScrolled} variant={variant} />
+              </div>
+              
               {navLinks.map((link, index) => (
                 <motion.div
                   key={link.name}
@@ -115,7 +128,7 @@ export function Header() {
                   <Link
                     href={link.href}
                     className={`group relative px-4 py-2 text-sm font-medium transition-colors duration-300 ${
-                      isScrolled ? "text-foreground" : "text-white/90"
+                      isScrolled || variant === 'dark' ? "text-black" : "text-white/90"
                     }`}
                   >
                     <span className="relative z-10">{link.name}</span>
@@ -141,20 +154,22 @@ export function Header() {
                 transition={{ delay: 0.5, duration: 0.5 }}
                 className="ml-4"
               >
-                <MagneticButton
-                  className="group relative overflow-hidden rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-primary-foreground"
-                >
-                  <span className="relative z-10 flex items-center gap-2">
-                    Book Now
-                    <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
-                  </span>
-                  <motion.span
-                    className="absolute inset-0 bg-accent"
-                    initial={{ x: "-100%" }}
-                    whileHover={{ x: 0 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </MagneticButton>
+                <Link href="/destinations">
+                  <MagneticButton
+                    className="group relative overflow-hidden rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-primary-foreground"
+                  >
+                    <span className="relative z-10 flex items-center gap-2">
+                      Book Now
+                      <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
+                    </span>
+                    <motion.span
+                      className="absolute inset-0 bg-accent"
+                      initial={{ x: "-100%" }}
+                      whileHover={{ x: 0 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </MagneticButton>
+                </Link>
               </motion.div>
             </div>
 
@@ -165,7 +180,7 @@ export function Header() {
               transition={{ delay: 0.3 }}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={`md:hidden relative z-50 p-2 transition-colors ${
-                isMobileMenuOpen ? "text-background" : isScrolled ? "text-foreground" : "text-white"
+                isMobileMenuOpen ? "text-background" : isScrolled || variant === 'dark' ? "text-black" : "text-white"
               }`}
               aria-label="Toggle menu"
             >
@@ -242,7 +257,7 @@ export function Header() {
                   className="mt-8"
                 >
                   <Link
-                    href="#contact"
+                    href="/destinations"
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-semibold text-primary"
                   >
@@ -259,9 +274,9 @@ export function Header() {
                 transition={{ delay: 0.6 }}
                 className="absolute bottom-12 left-6 right-6"
               >
-                <div className="flex flex-col gap-2 text-background/60 text-sm">
-                  <p>hello@wanderlust.travel</p>
-                  <p>+1 (555) 123-4567</p>
+                <div className="flex flex-col gap-2 text-sm">
+                  <a href="mailto:hello@wanderlust.travel" className="text-background/60 hover:text-background transition-colors">hello@wanderlust.travel</a>
+                  <a href="tel:+15551234567" className="text-background/60 hover:text-background transition-colors">+1 (555) 123-4567</a>
                 </div>
               </motion.div>
             </div>

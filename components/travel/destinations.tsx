@@ -187,7 +187,7 @@ export function Destinations() {
           ref={ref}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
         >
-          {allDestinations.slice(0, 11).map((destination, index) => (
+          {allDestinations.slice(0, 14).map((destination, index) => (
             <DestinationCard 
               key={destination.id} 
               destination={destination} 

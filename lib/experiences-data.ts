@@ -28,7 +28,7 @@ export const experiencesData: Experience[] = [
     fullDescription: "Experience the rich tapestry of world cultures through our carefully curated cultural tours. From ancient temples to traditional villages, from bustling markets to serene ceremonies, our tours offer an authentic glimpse into the heart and soul of each destination. You'll engage with local artisans, participate in traditional practices, and create memories that transcend typical tourism.",
     color: "from-primary/20 to-primary/5",
     iconColor: "text-primary",
-    heroImage: "/images/cultural.jpg",
+    heroImage: "https://images.unsplash.com/photo-1548013146-72479768bada?w=800&q=80",
     highlights: [
       "Visit ancient temples and sacred sites",
       "Interact with local artisans and craftsmen",
@@ -57,7 +57,7 @@ export const experiencesData: Experience[] = [
     fullDescription: "Push your boundaries with our adrenaline-pumping adventure trips. Whether you're conquering mountain peaks, navigating wild rivers, or exploring untamed wilderness, our expert guides ensure safety while maximizing excitement. From trekking through remote landscapes to scaling volcanic summits, each adventure is designed to challenge and inspire.",
     color: "from-accent/30 to-accent/10",
     iconColor: "text-accent",
-    heroImage: "/images/adventure.jpg",
+    heroImage: "https://images.unsplash.com/photo-1531761535209-180857e963b9?w=800&q=80",
     highlights: [
       "Mountain trekking expeditions",
       "White-water rafting",
@@ -86,7 +86,7 @@ export const experiencesData: Experience[] = [
     fullDescription: "Unwind on the world's most breathtaking beaches with our carefully selected beach destinations. From hidden coves to famous resort destinations, we offer experiences ranging from pure relaxation to water sports adventures. Picture yourself in overwater bungalows, on pristine white sand beaches, or exploring coral reefs teeming with marine life.",
     color: "from-primary/20 to-primary/5",
     iconColor: "text-primary",
-    heroImage: "/images/beach.jpg",
+    heroImage: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80",
     highlights: [
       "World-class beach resorts",
       "Snorkeling and diving expeditions",
@@ -115,7 +115,7 @@ export const experiencesData: Experience[] = [
     fullDescription: "Travel responsibly with our eco-conscious tourism experiences. Stay in eco-lodges, support conservation efforts, and learn about sustainable practices while exploring pristine natural environments. Our eco-tours are designed to minimize environmental impact while maximizing positive contributions to local communities and conservation.",
     color: "from-accent/30 to-accent/10",
     iconColor: "text-accent",
-    heroImage: "/images/eco.jpg",
+    heroImage: "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=800&q=80",
     highlights: [
       "Wildlife conservation projects",
       "Rainforest exploration",
@@ -144,7 +144,7 @@ export const experiencesData: Experience[] = [
     fullDescription: "Capture breathtaking moments with our specialized photography tours. Whether you're a professional photographer or an enthusiastic amateur, our tours are designed to take you to the most photogenic locations at the optimal times. Learn techniques from expert photographers while visiting stunning landscapes, vibrant cities, and exotic wildlife habitats.",
     color: "from-primary/20 to-primary/5",
     iconColor: "text-primary",
-    heroImage: "/images/photography.jpg",
+    heroImage: "https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=800&q=80",
     highlights: [
       "Golden hour shoots at iconic locations",
       "Wildlife photography expeditions",
@@ -173,7 +173,7 @@ export const experiencesData: Experience[] = [
     fullDescription: "Embark on a gastronomic adventure through the world's most flavorful destinations. Our culinary tours take you beyond typical restaurant dining to experience authentic local cuisine, from street food favorites to gourmet masterpieces. Visit local markets, learn traditional cooking techniques, and dine in unique settings you'll never forget.",
     color: "from-accent/30 to-accent/10",
     iconColor: "text-accent",
-    heroImage: "/images/culinary.jpg",
+    heroImage: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80",
     highlights: [
       "Cooking classes with master chefs",
       "Local market tours and tastings",

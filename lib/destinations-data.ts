@@ -9,6 +9,8 @@ export interface Destination {
   heroImage: string
   gallery: string[]
   price: string
+  originalPrice?: string
+  discount?: string
   duration: string
   rating: number
   reviewCount: number
@@ -34,11 +36,8 @@ export const destinations: Destination[] = [
     tagline: "Iconic sunsets and white-washed villages",
     description: "Experience the magic of Santorini, where breathtaking sunsets paint the sky over the Aegean Sea.",
     longDescription: "Santorini, officially known as Thira, is a stunning Greek island in the southern Aegean Sea. Famous for its dramatic views, stunning sunsets, white-washed houses with blue domes, and a still active volcano, Santorini is unlike any other destination in the world. The island was shaped by a massive volcanic eruption around 3,600 years ago, creating its distinctive crescent shape and the submerged caldera that makes for such spectacular scenery today.",
-    heroImage: "/images/santorini.jpg",
+    heroImage: "https://images.unsplash.com/photo-1613395877344-13d4a8e0d49e?w=800&q=80",
     gallery: [
-      "/images/santorini.jpg",
-      "/images/santorini-2.jpg",
-      "/images/santorini-3.jpg",
       "https://images.unsplash.com/photo-1613395877344-13d4a8e0d49e?w=800&q=80",
       "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=800&q=80",
       "https://images.unsplash.com/photo-1503152394-c571994fd383?w=800&q=80",
@@ -48,6 +47,8 @@ export const destinations: Destination[] = [
       "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=800&q=80"
     ],
     price: "$1,299",
+    originalPrice: "$1,599",
+    discount: "Save 20%",
     duration: "7 Days / 6 Nights",
     rating: 4.9,
     reviewCount: 2847,
@@ -89,13 +90,8 @@ export const destinations: Destination[] = [
     tagline: "Tropical paradise with ancient temples",
     description: "Discover the Island of the Gods with its lush rice terraces, ancient temples, and vibrant culture.",
     longDescription: "Bali, known as the Island of the Gods, is a Indonesian paradise that captivates visitors with its forested volcanic mountains, iconic rice paddies, beaches, and coral reefs. The island is also home to religious sites such as cliffside Uluwatu Temple. To the south, the beachside city of Kuta has lively bars, while Seminyak, Sanur, and Nusa Dua are popular resort towns. Ubud, the cultural heart of Bali, is famous for its traditional crafts and dance.",
-    heroImage: "/images/bali.jpg",
+    heroImage: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80",
     gallery: [
-      "/images/bali.jpg",
-      "/images/bali-2.jpg",
-      "/images/bali-3.jpg",
-      "/images/places/bali-temple.jpg",
-      "/images/places/bali-beach.jpg",
       "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80",
       "https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=800&q=80",
       "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=800&q=80",
@@ -103,6 +99,8 @@ export const destinations: Destination[] = [
       "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?w=800&q=80"
     ],
     price: "$899",
+    originalPrice: "$1,199",
+    discount: "Save 25%",
     duration: "8 Days / 7 Nights",
     rating: 4.8,
     reviewCount: 3562,
@@ -145,11 +143,8 @@ export const destinations: Destination[] = [
     tagline: "Where tradition meets innovation",
     description: "Immerse yourself in a city that seamlessly blends ancient traditions with cutting-edge technology.",
     longDescription: "Tokyo, Japan's busy capital, mixes the ultramodern and the traditional, from neon-lit skyscrapers to historic temples. The opulent Meiji Shinto Shrine is known for its towering gate and surrounding woods. The Imperial Palace sits amid large public gardens. The city's many museums offer exhibits ranging from classical art in the Tokyo National Museum to a reconstructed kabuki theater in the Edo-Tokyo Museum.",
-    heroImage: "/images/tokyo.jpg",
+    heroImage: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&q=80",
     gallery: [
-      "/images/tokyo.jpg",
-      "/images/tokyo-2.jpg",
-      "/images/tokyo-3.jpg",
       "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&q=80",
       "https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?w=800&q=80",
       "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=800&q=80",
@@ -159,6 +154,8 @@ export const destinations: Destination[] = [
       "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800&q=80"
     ],
     price: "$1,499",
+    originalPrice: "$1,899",
+    discount: "Save 20%",
     duration: "9 Days / 8 Nights",
     rating: 4.9,
     reviewCount: 4128,
@@ -202,20 +199,17 @@ export const destinations: Destination[] = [
     tagline: "Untamed wilderness and glacial beauty",
     description: "Journey to the end of the world and discover raw, untouched natural beauty.",
     longDescription: "Patagonia is a sparsely populated region at the southern end of South America, shared by Argentina and Chile. The region comprises the southern section of the Andes mountains, lakes, fjords, and glaciers in the west and deserts, tablelands and steppes to the east. It is home to the spectacular Torres del Paine and Los Glaciares National Parks, offering some of the most dramatic landscapes on Earth.",
-    heroImage: "/images/patagonia.jpg",
+    heroImage: "https://images.unsplash.com/photo-1531761535209-180857e963b9?w=800&q=80",
     gallery: [
-      "/images/patagonia.jpg",
-      "/images/patagonia-2.jpg",
-      "/images/patagonia-3.jpg",
-      "/images/places/peru.jpg",
       "https://images.unsplash.com/photo-1531761535209-180857e963b9?w=800&q=80",
       "https://images.unsplash.com/photo-1478827536114-da961b7f86d2?w=800&q=80",
-      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80",
       "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=800&q=80",
       "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&q=80",
       "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80"
     ],
     price: "$1,799",
+    originalPrice: "$2,299",
+    discount: "Save 22%",
     duration: "10 Days / 9 Nights",
     rating: 4.7,
     reviewCount: 1892,
@@ -260,17 +254,16 @@ export const destinations: Destination[] = [
     tagline: "Vibrant souks and exotic culture",
     description: "Lose yourself in the sensory overload of Morocco's most magical city.",
     longDescription: "Marrakech, a former imperial city in western Morocco, is a major economic center and home to mosques, palaces and gardens. The medina is a densely packed, walled medieval city dating to the Berber Empire, with mazelike alleys where thriving souks sell traditional textiles, pottery and jewelry. A symbol of the city, and visible for miles, is the Moorish Koutoubia Mosque minaret.",
-    heroImage: "/images/morocco.jpg",
+    heroImage: "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?w=800&q=80",
     gallery: [
-      "/images/morocco.jpg",
-      "/images/morocco-2.jpg",
-      "/images/morocco-3.jpg",
       "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?w=800&q=80",
       "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=800&q=80",
       "https://images.unsplash.com/photo-1509106581673-d7c92781a8e0?w=800&q=80",
       "https://images.unsplash.com/photo-1518544801976-3e159e50e5bb?w=800&q=80"
     ],
     price: "$749",
+    originalPrice: "$999",
+    discount: "Save 25%",
     duration: "6 Days / 5 Nights",
     rating: 4.6,
     reviewCount: 2156,
@@ -311,20 +304,18 @@ export const destinations: Destination[] = [
     tagline: "The city of lights and romance",
     description: "Fall in love with the art, cuisine, and timeless elegance of France's enchanting capital.",
     longDescription: "Paris, France's capital, is a major European city and a global center for art, fashion, gastronomy and culture. Its 19th-century cityscape is crisscrossed by wide boulevards and the River Seine. Beyond such landmarks as the Eiffel Tower and the 12th-century, Gothic Notre-Dame cathedral, the city is known for its cafe culture and designer boutiques along the Rue du Faubourg Saint-Honoré. The Louvre Museum houses thousands of works of art, from antiquity to the mid-19th century.",
-    heroImage: "/images/places/paris.jpg",
+    heroImage: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&q=80",
     gallery: [
-      "/images/places/paris.jpg",
       "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&q=80",
       "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=800&q=80",
-      "https://images.unsplash.com/photo-1478391679764-b2d8b3cd1e94?w=800&q=80",
       "https://images.unsplash.com/photo-1550340499-a6c60fc8287c?w=800&q=80",
       "https://images.unsplash.com/photo-1431274172761-fca41d930114?w=800&q=80",
-      "https://images.unsplash.com/photo-1509439581779-6298f75bf6e5?w=800&q=80",
-      "https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=800&q=80",
-      "https://images.unsplash.com/photo-1541778406-96eb7b93da60?w=800&q=80",
-      "https://images.unsplash.com/photo-1564594326900-559bc4f0a837?w=800&q=80"
+      "https://images.unsplash.com/photo-1550345332-09e3ac987658?w=800&q=80",
+      "https://images.unsplash.com/photo-1509439581779-6298f75bf6e5?w=800&q=80"
     ],
     price: "$1,099",
+    originalPrice: "$1,399",
+    discount: "Save 20%",
     duration: "7 Days / 6 Nights",
     rating: 4.8,
     reviewCount: 5234,
@@ -366,20 +357,19 @@ export const destinations: Destination[] = [
     tagline: "Luxury and modern marvels",
     description: "Experience the futuristic skyline, desert adventures, and unmatched luxury of the UAE.",
     longDescription: "Dubai is a city and emirate in the United Arab Emirates known for luxury shopping, ultramodern architecture, and a lively nightlife scene. Burj Khalifa, an 830m-tall tower, dominates the skyscraper-filled skyline. At its foot lies Dubai Fountain, with jets and lights choreographed to music. On artificial islands just offshore is Atlantis, The Palm, a resort with water and marine-animal parks. Dubai is also a major global transport hub for passengers and cargo.",
-    heroImage: "/images/places/dubai.jpg",
+    heroImage: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
     gallery: [
-      "/images/places/dubai.jpg",
       "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
       "https://images.unsplash.com/photo-1518684079-3c830dcef090?w=800&q=80",
       "https://images.unsplash.com/photo-1580674684081-7617fbf3d745?w=800&q=80",
-      "https://images.unsplash.com/photo-1546412414-e1885259563a?w=800&q=80",
-      "https://images.unsplash.com/photo-1526495124232-a04e18491684?w=800&q=80",
-      "https://images.unsplash.com/photo-1582672060674-bc2bd808a8c5?w=800&q=80",
+      "https://images.unsplash.com/photo-1545156521-77bd85671d30?w=800&q=80",
       "https://images.unsplash.com/photo-1548013146-72479768bada?w=800&q=80",
       "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80",
-      "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80"
+      "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80",
     ],
     price: "$1,299",
+    originalPrice: "$1,599",
+    discount: "Save 20%",
     duration: "6 Days / 5 Nights",
     rating: 4.7,
     reviewCount: 3891,
@@ -420,9 +410,8 @@ export const destinations: Destination[] = [
     tagline: "Crystal clear waters and private islands",
     description: "Escape to paradise in overwater villas surrounded by turquoise lagoons and pristine coral reefs.",
     longDescription: "The Maldives is a tropical nation in the Indian Ocean composed of 26 ring-shaped atolls, which are made up of more than 1,000 coral islands. It's known for its beaches, blue labyrinths, and extensive reefs. The capital, Malé, has a busy fish market, restaurants, and shops on the main road, Majeedhee Magu, and 17th-century Hukuru Miskiy (Old Friday Mosque) made of coral stone. The Maldives is the world's lowest country, with an average ground level of just 1.5 meters above sea level.",
-    heroImage: "/images/places/maldives.jpg",
+    heroImage: "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&q=80",
     gallery: [
-      "/images/places/maldives.jpg",
       "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&q=80",
       "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=800&q=80",
       "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
@@ -434,6 +423,8 @@ export const destinations: Destination[] = [
       "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?w=800&q=80"
     ],
     price: "$2,099",
+    originalPrice: "$2,699",
+    discount: "Save 22%",
     duration: "7 Days / 6 Nights",
     rating: 4.9,
     reviewCount: 2156,
@@ -475,9 +466,8 @@ export const destinations: Destination[] = [
     tagline: "Majestic mountains and skiing",
     description: "Breathe in crisp alpine air as you explore stunning peaks, charming villages, and world-class ski resorts.",
     longDescription: "The Swiss Alps are the portion of the Alps mountain range that lies within Switzerland. Because of their central position within the entire Alpine range, they are also known as the 'Heart of the Alps'. The Swiss Alps contain many of the most famous peaks in Europe, including the Matterhorn, Eiger, Jungfrau, and the Dufourspitze. Switzerland's alpine landscape has made it a premier destination for skiing, hiking, and mountaineering, while its charming villages and pristine lakes offer relaxation and natural beauty year-round.",
-    heroImage: "/images/places/swiss-alps.jpg",
+    heroImage: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=800&q=80",
     gallery: [
-      "/images/places/swiss-alps.jpg",
       "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=800&q=80",
       "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
       "https://images.unsplash.com/photo-1527668752968-14dc70a27c95?w=800&q=80",
@@ -489,6 +479,8 @@ export const destinations: Destination[] = [
       "https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=800&q=80"
     ],
     price: "$1,899",
+    originalPrice: "$2,399",
+    discount: "Save 21%",
     duration: "8 Days / 7 Nights",
     rating: 4.9,
     reviewCount: 1876,
@@ -538,13 +530,14 @@ export const destinations: Destination[] = [
       "https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=800&q=80",
       "https://images.unsplash.com/photo-1478436127897-769e1b3f0f36?w=800&q=80",
       "https://images.unsplash.com/photo-1522623349500-de37a56ea2a5?w=800&q=80",
-      "https://images.unsplash.com/photo-1504198453319-5ce911bafcde?w=800&q=80",
       "https://images.unsplash.com/photo-1480796927426-f609979314bd?w=800&q=80",
       "https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=800&q=80",
       "https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?w=800&q=80",
       "https://images.unsplash.com/photo-1493780474015-ba834fd0ce2f?w=800&q=80"
     ],
     price: "$1,399",
+    originalPrice: "$1,799",
+    discount: "Save 22%",
     duration: "7 Days / 6 Nights",
     rating: 4.9,
     reviewCount: 3245,
@@ -586,9 +579,8 @@ export const destinations: Destination[] = [
     tagline: "The city that never sleeps",
     description: "Experience the energy of the world's most iconic city with its towering skyline, Broadway shows, and diverse neighborhoods.",
     longDescription: "New York City comprises 5 boroughs sitting where the Hudson River meets the Atlantic Ocean. At its core is Manhattan, a densely populated borough that's among the world's major commercial, financial and cultural centers. Its iconic sites include skyscrapers such as the Empire State Building and sprawling Central Park. Broadway theater is staged in neon-lit Times Square. The Statue of Liberty, a symbol of freedom, stands in New York Harbor.",
-    heroImage: "/images/places/new-york.jpg",
+    heroImage: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=800&q=80",
     gallery: [
-      "/images/places/new-york.jpg",
       "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=800&q=80",
       "https://images.unsplash.com/photo-1518391846015-55a9cc003b25?w=800&q=80",
       "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=800&q=80",
@@ -600,6 +592,8 @@ export const destinations: Destination[] = [
       "https://images.unsplash.com/photo-1568515387631-8b650bbcdb90?w=800&q=80"
     ],
     price: "$1,199",
+    originalPrice: "$1,499",
+    discount: "Save 20%",
     duration: "7 Days / 6 Nights",
     rating: 4.7,
     reviewCount: 6542,
@@ -641,13 +635,11 @@ export const destinations: Destination[] = [
     tagline: "Turquoise lagoon and volcanic peaks",
     description: "Discover the jewel of the South Pacific, where dramatic volcanic peaks rise above crystal-clear turquoise waters.",
     longDescription: "Bora Bora is a small South Pacific island northwest of Tahiti in French Polynesia. Surrounded by sand-fringed motus (islets) and a turquoise lagoon protected by a coral reef, it's known for its scuba diving. It's also a popular luxury resort destination where visitors stay in overwater bungalows. At the island's center rises the dormant volcano Mount Otemanu, which provides a dramatic backdrop to the stunning lagoon.",
-    heroImage: "/images/places/bora-bora.jpg",
+    heroImage: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
     gallery: [
-      "/images/places/bora-bora.jpg",
-      "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&q=80",
+      "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
       "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=800&q=80",
       "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80",
-      "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
       "https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?w=800&q=80",
       "https://images.unsplash.com/photo-1520454974749-611b7248ffdb?w=800&q=80",
       "https://images.unsplash.com/photo-1512100356356-de1b84283e18?w=800&q=80",
@@ -655,6 +647,8 @@ export const destinations: Destination[] = [
       "https://images.unsplash.com/photo-1544550581-5f7ceaf7f992?w=800&q=80"
     ],
     price: "$2,499",
+    originalPrice: "$3,199",
+    discount: "Save 22%",
     duration: "8 Days / 7 Nights",
     rating: 4.9,
     reviewCount: 1543,
@@ -708,6 +702,8 @@ export const destinations: Destination[] = [
       "https://images.unsplash.com/photo-1551524559-8af4e6624178?w=800&q=80"
     ],
     price: "$1,099",
+    originalPrice: "$1,399",
+    discount: "Save 21%",
     duration: "7 Days / 6 Nights",
     rating: 4.7,
     reviewCount: 2891,
@@ -741,6 +737,7 @@ export const destinations: Destination[] = [
       { day: 7, title: "Tchau Rio", description: "Leisurely morning at Copacabana. Last-minute shopping at Hippy Market. Transfer to airport for departure." }
     ]
   },
+
   {
     id: "buenos-aires",
     name: "Buenos Aires",
@@ -760,6 +757,8 @@ export const destinations: Destination[] = [
       "https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?w=800&q=80"
     ],
     price: "$999",
+    originalPrice: "$1,299",
+    discount: "Save 23%",
     duration: "7 Days / 6 Nights",
     rating: 4.8,
     reviewCount: 2345,
@@ -793,60 +792,7 @@ export const destinations: Destination[] = [
       { day: 7, title: "Hasta Luego", description: "Leisurely breakfast with medialunas. Last walk through Palermo Soho. Transfer to airport." }
     ]
   },
-  {
-    id: "sydney",
-    name: "Sydney",
-    country: "Australia",
-    continent: "Oceania",
-    tagline: "Harbor views and coastal adventures",
-    description: "Experience Australia's dazzling harbor city with its iconic Opera House, stunning beaches, and vibrant culture.",
-    longDescription: "Sydney, capital of New South Wales and one of Australia's largest cities, is best known for its harbourfront Sydney Opera House, with a distinctive sail-like design. Massive Darling Harbour and the smaller Circular Quay port are hubs of waterside life, with the arched Harbour Bridge and esteemed Royal Botanic Garden nearby. Sydney Tower's outdoor platform, the Skywalk, offers 360-degree views of the city and suburbs. The city also boasts some of the world's most famous beaches, including Bondi and Manly, as well as a thriving food and arts scene.",
-    heroImage: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=800&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=800&q=80",
-      "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=800&q=80",
-      "https://images.unsplash.com/photo-1528072164453-f4e8ef0d475a?w=800&q=80",
-      "https://images.unsplash.com/photo-1526958916923-a5879a272591?w=800&q=80",
-      "https://images.unsplash.com/photo-1524293581917-878a6d017c71?w=800&q=80",
-      "https://images.unsplash.com/photo-1598948485421-33a1655d3c18?w=800&q=80",
-      "https://images.unsplash.com/photo-1506146635773-e47d80e79e1a?w=800&q=80"
-    ],
-    price: "$1,599",
-    duration: "8 Days / 7 Nights",
-    rating: 4.8,
-    reviewCount: 3127,
-    bestTime: "September - November, March - May",
-    language: "English",
-    currency: "Australian Dollar (AUD)",
-    highlights: [
-      "Tour the iconic Sydney Opera House",
-      "Climb the Sydney Harbour Bridge",
-      "Surf at Bondi Beach",
-      "Take the ferry to Manly Beach",
-      "Explore the Blue Mountains",
-      "Visit Taronga Zoo with harbour views"
-    ],
-    included: [
-      "7 nights harbour-view hotel",
-      "Daily breakfast & 2 dinners",
-      "Sydney Opera House guided tour",
-      "Harbour BridgeClimb experience",
-      "Blue Mountains full-day tour",
-      "Bondi to Coogee coastal walk guide"
-    ],
-    tags: ["adventure-trips", "beach-getaways", "photography-tours"],
-    itinerary: [
-      { day: 1, title: "Welcome to Sydney", description: "Arrive at Sydney Kingsford Smith Airport. Transfer to your harbour-view hotel in Circular Quay. Evening walk along the waterfront." },
-      { day: 2, title: "Opera House & Rocks", description: "Morning guided tour of the Sydney Opera House. Explore The Rocks historic district. Afternoon Harbour Bridge walk. Evening cruise on the harbour." },
-      { day: 3, title: "Bondi & Beaches", description: "Morning surf lesson at Bondi Beach. Afternoon Bondi to Coogee coastal walk. Evening seafood dinner at Bondi Icebergs." },
-      { day: 4, title: "Blue Mountains", description: "Full-day excursion to the Blue Mountains. See the Three Sisters rock formation. Scenic railway and Skyway rides." },
-      { day: 5, title: "Harbour & Wildlife", description: "Morning ferry to Taronga Zoo. Afternoon kayaking in the harbour. Evening at Darling Harbour." },
-      { day: 6, title: "Manly & Northern Beaches", description: "Ferry ride to Manly Beach. Morning at Shelly Beach for snorkeling. Afternoon exploring Manly town. Sunset drinks." },
-      { day: 7, title: "Food & Culture", description: "Morning at the Sydney Fish Market. Afternoon at the Art Gallery of NSW. Evening Harbour BridgeClimb at sunset. Farewell dinner." },
-      { day: 8, title: "Farewell Australia", description: "Leisurely breakfast with harbour views. Last-minute shopping at Queen Victoria Building. Transfer to airport." }
-    ]
-  }
-]
+];
 
 export function getDestinationBySlug(slug: string): Destination | undefined {
   return destinations.find(d => d.id === slug)

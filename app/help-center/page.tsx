@@ -3,6 +3,52 @@ import { Footer } from "@/components/travel/footer"
 import Link from "next/link"
 import { HelpCircle, Search, MessageCircle, Phone, Mail, BookOpen, CreditCard, MapPin, Shield, ChevronRight } from "lucide-react"
 
+function TextWithLinks({ text }: { text: string }) {
+  const emailRegex = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/g
+  const phoneRegex = /(\+?1?[-.\s]?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4})/g
+  
+  const parts = text.split(emailRegex)
+  
+  return (
+    <>
+      {parts.map((part, i) => {
+        if (i === 0) {
+          const phoneParts = part.split(phoneRegex)
+          return phoneParts.map((phonePart, j) => {
+            if (phonePart && phonePart.match(phoneRegex)) {
+              return (
+                <a key={`phone-${j}`} href={`tel:${phonePart.replace(/\D/g, '')}`} className="text-primary hover:underline">{phonePart}</a>
+              )
+            }
+            return phonePart
+          })
+        }
+        const match = part.match(emailRegex)
+        if (match) {
+          const beforeEmail = part.slice(0, part.indexOf(match[0]))
+          const afterEmail = part.slice(part.indexOf(match[0]) + match[0].length)
+          const phonePartsAfter = afterEmail.split(phoneRegex)
+          return (
+            <span key={i}>
+              {beforeEmail}
+              <a href={`mailto:${match[0]}`} className="text-primary hover:underline">{match[0]}</a>
+              {phonePartsAfter.map((phonePart, j) => {
+                if (phonePart && phonePart.match(phoneRegex)) {
+                  return (
+                    <a key={`phone-after-${j}`} href={`tel:${phonePart.replace(/\D/g, '')}`} className="text-primary hover:underline">{phonePart}</a>
+                  )
+                }
+                return phonePart
+              })}
+            </span>
+          )
+        }
+        return part
+      })}
+    </>
+  )
+}
+
 const faqCategories = [
   {
     icon: BookOpen,
@@ -136,7 +182,7 @@ export default function HelpCenterPage() {
                         <ChevronRight className="h-5 w-5 text-muted-foreground transition-transform group-open:rotate-90" />
                       </summary>
                       <div className="px-6 pb-6 text-muted-foreground leading-relaxed">
-                        {item.a}
+                        <TextWithLinks text={item.a} />
                       </div>
                     </details>
                   ))}
@@ -161,13 +207,13 @@ export default function HelpCenterPage() {
               <div className="rounded-2xl bg-background/10 p-6">
                 <Phone className="h-8 w-8 text-accent mx-auto" />
                 <h3 className="mt-4 font-semibold text-background">Call Us</h3>
-                <p className="mt-2 text-sm text-background/60">+1 (555) 123-4567</p>
+                <a href="tel:+15551234567" className="mt-2 text-sm text-background/60 hover:text-background transition-colors block">+1 (555) 123-4567</a>
                 <p className="text-xs text-background/40">Available 24/7</p>
               </div>
               <div className="rounded-2xl bg-background/10 p-6">
                 <Mail className="h-8 w-8 text-accent mx-auto" />
                 <h3 className="mt-4 font-semibold text-background">Email Us</h3>
-                <p className="mt-2 text-sm text-background/60">support@wanderlust.travel</p>
+                <a href="mailto:support@wanderlust.travel" className="mt-2 text-sm text-background/60 hover:text-background transition-colors block">support@wanderlust.travel</a>
                 <p className="text-xs text-background/40">Response within 2 hours</p>
               </div>
               <div className="rounded-2xl bg-background/10 p-6">

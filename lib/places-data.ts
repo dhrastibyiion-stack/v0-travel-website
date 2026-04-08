@@ -33,8 +33,12 @@ export const places: Place[] = [
     tagline: "City of Love and Lights",
     description: "Experience romantic strolls, world-class museums, and iconic architecture.",
     longDescription: "Paris, the capital of France, is one of the most iconic and romantic cities in the world. From the magnificent Eiffel Tower to the artistic treasures of the Louvre, Paris captivates visitors with its timeless beauty, exquisite cuisine, and undeniable charm.",
-    heroImage: "/images/places/paris.jpg",
-    gallery: ["/images/places/paris.jpg", "/images/santorini.jpg", "/images/tokyo.jpg"],
+    heroImage: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&q=80",
+      "https://images.unsplash.com/photo-1613395877344-13d4a8e0d49e?w=800&q=80",
+      "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&q=80"
+    ],
     price: "$1,199",
     duration: "5 Days / 4 Nights",
     rating: 4.9,
@@ -74,8 +78,12 @@ export const places: Place[] = [
     tagline: "Modern Luxury in the Desert",
     description: "Experience ultra-modern architecture, luxury shopping, and desert adventures.",
     longDescription: "Dubai is known for its luxury shopping, ultramodern architecture and vibrant nightlife scene. Burj Khalifa is a 828-meter high tower in the downtown area, and the Palm Jumeirah is a man-made palm-shaped island fringed with resort hotels.",
-    heroImage: "/images/places/dubai.jpg",
-    gallery: ["/images/places/dubai.jpg", "/images/tokyo.jpg", "/images/patagonia.jpg"],
+    heroImage: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
+      "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&q=80",
+      "https://images.unsplash.com/photo-1531761535209-180857e963b9?w=800&q=80"
+    ],
     price: "$1,399",
     duration: "4 Days / 3 Nights",
     rating: 4.7,
@@ -114,8 +122,12 @@ export const places: Place[] = [
     tagline: "The City That Never Sleeps",
     description: "Discover the energy of Manhattan's iconic landmarks and world-class attractions.",
     longDescription: "New York City is famous for its iconic skyline, Broadway theaters, world-renowned museums, diverse neighborhoods, and endless entertainment options. From Times Square to Central Park, NYC offers unforgettable experiences.",
-    heroImage: "/images/places/new-york.jpg",
-    gallery: ["/images/places/new-york.jpg", "/images/tokyo.jpg", "/images/bali.jpg"],
+    heroImage: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=800&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=800&q=80",
+      "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&q=80",
+      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80"
+    ],
     price: "$1,299",
     duration: "5 Days / 4 Nights",
     rating: 4.8,
@@ -155,8 +167,12 @@ export const places: Place[] = [
     tagline: "Paradise Overwater",
     description: "Relax in overwater bungalows surrounded by crystal-clear turquoise waters.",
     longDescription: "The Maldives is an archipelago in the Indian Ocean known for its clear lagoons and white sand beaches. The islands are a popular vacation destination, with snorkeling, scuba diving, and luxury resorts.",
-    heroImage: "/images/places/maldives.jpg",
-    gallery: ["/images/places/maldives.jpg", "/images/bali.jpg", "/images/santorini.jpg"],
+    heroImage: "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&q=80",
+      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80",
+      "https://images.unsplash.com/photo-1613395877344-13d4a8e0d49e?w=800&q=80"
+    ],
     price: "$2,499",
     duration: "7 Days / 6 Nights",
     rating: 4.9,
@@ -198,8 +214,12 @@ export const places: Place[] = [
     tagline: "Tropical Island Paradise",
     description: "Discover pristine beaches, water sports, and vibrant beach culture.",
     longDescription: "Bali's beaches offer something for everyone, from surfing at Uluwatu to relaxing at Seminyak. Crystal clear waters, white sand beaches, and beachside resorts make it perfect for beach lovers.",
-    heroImage: "/images/places/bali-beach.jpg",
-    gallery: ["/images/places/bali-beach.jpg", "/images/bali.jpg", "/images/maldives.jpg"],
+    heroImage: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80",
+      "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&q=80",
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80"
+    ],
     price: "$899",
     duration: "6 Days / 5 Nights",
     rating: 4.8,
@@ -240,8 +260,12 @@ export const places: Place[] = [
     tagline: "Alpine Mountain Adventure",
     description: "Experience stunning mountain scenery, hiking, and charming alpine villages.",
     longDescription: "The Swiss Alps offer breathtaking mountain scenery, world-class skiing, and charming villages. Home to the Matterhorn and numerous alpine lakes, this region is perfect for outdoor enthusiasts.",
-    heroImage: "/images/places/swiss-alps.jpg",
-    gallery: ["/images/places/swiss-alps.jpg", "/images/patagonia.jpg", "/images/iceland.jpg"],
+    heroImage: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=800&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=800&q=80",
+      "https://images.unsplash.com/photo-1531761535209-180857e963b9?w=800&q=80",
+      "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=800&q=80"
+    ],
     price: "$1,599",
     duration: "6 Days / 5 Nights",
     rating: 4.9,
@@ -282,8 +306,12 @@ export const places: Place[] = [
     tagline: "Spiritual & Cultural Journey",
     description: "Explore ancient temples, spiritual rituals, and Balinese traditions.",
     longDescription: "Bali is known for its spiritual heritage and ancient temples. From clifftop Uluwatu Temple to the sacred Tirta Empul spring temple, visitors can experience Balinese spirituality and culture.",
-    heroImage: "/images/places/bali-temple.jpg",
-    gallery: ["/images/places/bali-temple.jpg", "/images/bali.jpg", "/images/thailand.jpg"],
+    heroImage: "https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=800&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=800&q=80",
+      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80",
+      "https://images.unsplash.com/photo-1528181304800-259b08848526?w=800&q=80"
+    ],
     price: "$1,099",
     duration: "6 Days / 5 Nights",
     rating: 4.8,
@@ -324,8 +352,12 @@ export const places: Place[] = [
     tagline: "South Pacific Luxury",
     description: "Escape to overwater bungalows in the heart of the South Pacific.",
     longDescription: "Bora Bora is a small South Pacific island known for its luxury resorts, pristine beaches, and incredible lagoon. It's consistently ranked as one of the world's most beautiful islands.",
-    heroImage: "/images/places/bora-bora.jpg",
-    gallery: ["/images/places/bora-bora.jpg", "/images/maldives.jpg", "/images/bali-beach.jpg"],
+    heroImage: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
+      "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&q=80",
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80"
+    ],
     price: "$2,199",
     duration: "5 Days / 4 Nights",
     rating: 4.9,

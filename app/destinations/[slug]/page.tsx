@@ -19,7 +19,21 @@ import {
   Heart
 } from "lucide-react"
 import { getDestinationBySlug, getAllDestinationSlugs } from "@/lib/destinations-data"
+import { countryBlogPosts, BlogPost } from "@/lib/blog-data"
 import { notFound } from "next/navigation"
+
+// Country mapping for blog guides
+const countrySlugMap: Record<string, string> = {
+  Greece: "greece",
+  Italy: "italy",
+  Japan: "japan",
+  Thailand: "thailand",
+  Kenya: "kenya",
+  France: "france",
+  Switzerland: "switzerland",
+  Indonesia: "bali",
+  Maldives: "maldives",
+}
 import { Button } from "@/components/ui/button"
 
 // Hero Section with Parallax
@@ -221,6 +235,9 @@ function GallerySection({ images, name }: { images: string[], name: string }) {
 
 // Overview Section
 function OverviewSection({ destination }: { destination: NonNullable<ReturnType<typeof getDestinationBySlug>> }) {
+  const countrySlug = countrySlugMap[destination.country]
+  const countryGuide = countrySlug ? countryBlogPosts[countrySlug] : null
+
   return (
     <section className="py-16 md:py-24 bg-secondary/30">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -268,6 +285,47 @@ function OverviewSection({ destination }: { destination: NonNullable<ReturnType<
                 ))}
               </div>
             </motion.div>
+
+            {/* Country Guide Link */}
+            {countryGuide && (
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="mt-12"
+              >
+                <div className="bg-card rounded-2xl p-6 md:p-8 border border-border">
+                  <div className="flex flex-col md:flex-row gap-6 items-start">
+                    <div className="relative aspect-[16/9] md:w-64 flex-shrink-0 rounded-xl overflow-hidden">
+                      <Image
+                        src={countryGuide.image}
+                        alt={countryGuide.title}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <span className="text-xs font-medium uppercase tracking-wider text-primary">
+                        Country Guide
+                      </span>
+                      <h3 className="font-serif text-xl md:text-2xl font-bold text-foreground mt-2">
+                        {countryGuide.title}
+                      </h3>
+                      <p className="text-muted-foreground mt-2 line-clamp-2">
+                        {countryGuide.excerpt}
+                      </p>
+                      <Link href={`/blog/${countryGuide.id}`}>
+                        <Button className="mt-4" variant="outline">
+                          Read Full Guide
+                          <ArrowLeft className="ml-2 h-4 w-4 rotate-180" />
+                        </Button>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            )}
           </div>
 
           {/* Sidebar */}

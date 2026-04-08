@@ -36,7 +36,7 @@ const testimonials = [
   {
     id: 4,
     name: "Michael Park",
-    location: "Sydney, Australia",
+    location: "Toronto, Canada",
     avatar: "MP",
     text: "Patagonia was on my bucket list for years. Wanderlust not only made it happen but created an adventure I'll be telling stories about forever.",
     destination: "Patagonia, Argentina",
@@ -230,7 +230,7 @@ export function Testimonials() {
                       <motion.span
                         layoutId="activeDot"
                         className="absolute inset-0 rounded-full bg-primary"
-                        initial={false}
+                        initial={undefined}
                         transition={{ type: "spring", stiffness: 500, damping: 30 }}
                       />
                     )}

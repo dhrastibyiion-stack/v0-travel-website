@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { getPlaceBySlug } from '@/lib/places-data'
 import { Heart, Star, MapPin, Clock, DollarSign, Users, Calendar, ChevronDown, ChevronRight, ArrowLeft } from 'lucide-react'
 import { useParams } from 'next/navigation'
+import { Header } from '@/components/travel/header'
 
 export default function PlaceDetail() {
   const params = useParams()
@@ -61,17 +62,20 @@ export default function PlaceDetail() {
       animate={{ opacity: 1 }}
       className="min-h-screen bg-background"
     >
+      <Header variant="dark" />
+      
       {/* Back Button */}
       <motion.div
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
-        className="sticky top-4 z-40 px-4 sm:px-6 lg:px-8 pt-4"
+        className="absolute left-6 top-24 z-40"
       >
-        <Link href="/">
-          <button className="flex items-center gap-2 px-4 py-2 rounded-lg bg-card/80 backdrop-blur-md text-foreground hover:bg-card transition-colors shadow-lg">
+        <Link href="/#destinations">
+          <button className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/10 backdrop-blur-md text-white hover:bg-white/20 transition-colors shadow-lg">
             <ArrowLeft className="w-5 h-5" />
             <span className="font-semibold">Back</span>
           </button>
+        </Link>
         </Link>
       </motion.div>
 

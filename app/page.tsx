@@ -4,12 +4,16 @@ import { Destinations } from "@/components/travel/destinations"
 import { HorizontalGallery } from "@/components/travel/horizontal-gallery"
 import { Places } from "@/components/travel/places"
 import { Experiences } from "@/components/travel/experiences"
+import { About } from "@/components/travel/about"
+import { Awards } from "@/components/travel/awards"
+import { Blog } from "@/components/travel/blog"
 import { Testimonials } from "@/components/travel/testimonials"
 import { CTA } from "@/components/travel/cta"
 import { Footer } from "@/components/travel/footer"
 import { CustomCursor } from "@/components/travel/custom-cursor"
 import { ScrollProgress } from "@/components/travel/scroll-progress"
 import { SmoothScroll } from "@/components/travel/smooth-scroll"
+import { LiveChat } from "@/components/travel/live-chat"
 
 export default function TravelHomePage() {
   return (
@@ -23,9 +27,13 @@ export default function TravelHomePage() {
         <HorizontalGallery />
         <Places />
         <Experiences />
+        <About />
+        <Awards />
+        <Blog />
         <Testimonials />
         <CTA />
         <Footer />
+        <LiveChat />
       </main>
     </SmoothScroll>
   )

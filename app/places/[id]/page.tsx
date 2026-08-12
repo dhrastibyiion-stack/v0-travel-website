@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -16,6 +16,27 @@ export default function PlaceDetail() {
   const [expandedDay, setExpandedDay] = useState<number | null>(0)
   const [wishlist, setWishlist] = useState(false)
   const [bookingStep, setBookingStep] = useState('overview')
+  const [booking, setBooking] = useState({
+    fullName: '',
+    email: '',
+    phone: '',
+    travelers: '1',
+    departureDate: '',
+    notes: '',
+  })
+  const [bookingStatus, setBookingStatus] = useState<'idle' | 'success'>('idle')
+
+  useEffect(() => {
+    if (!place) return
+    const saved = window.localStorage.getItem(`wanderlust-booking-${place.slug}`)
+    if (saved) {
+      try {
+        setBooking(JSON.parse(saved))
+      } catch {
+        window.localStorage.removeItem(`wanderlust-booking-${place.slug}`)
+      }
+    }
+  }, [place])
 
   if (!place) {
     return (
@@ -332,41 +353,49 @@ export default function PlaceDetail() {
               </div>
 
               {/* Booking Form */}
-              <div className="space-y-4">
+              <form
+                className="space-y-4"
+                onSubmit={(event: FormEvent<HTMLFormElement>) => {
+                  event.preventDefault()
+                  window.localStorage.setItem(`wanderlust-booking-${place.slug}`, JSON.stringify(booking))
+                  setBookingStatus('success')
+                }}
+              >
                 <div>
-                  <label className="block text-sm font-semibold text-foreground mb-2">Travelers</label>
-                  <select className="w-full px-4 py-2 bg-background border border-border rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-accent">
-                    {[1, 2, 3, 4, 5, 6].map(n => (
-                      <option key={n} value={n}>{n} {n === 1 ? 'traveler' : 'travelers'}</option>
-                    ))}
-                  </select>
+                  <label htmlFor="fullName" className="mb-2 block text-sm font-semibold text-foreground">Full name</label>
+                  <input id="fullName" required value={booking.fullName} onChange={(event) => setBooking({ ...booking, fullName: event.target.value })} placeholder="Your full name" className="w-full rounded-lg border border-border bg-background px-4 py-2 text-foreground outline-none focus:ring-2 focus:ring-accent" />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-foreground mb-2">Departure Date</label>
-                  <input
-                    type="date"
-                    className="w-full px-4 py-2 bg-background border border-border rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-accent"
-                  />
+                  <label htmlFor="email" className="mb-2 block text-sm font-semibold text-foreground">Email address</label>
+                  <input id="email" required type="email" value={booking.email} onChange={(event) => setBooking({ ...booking, email: event.target.value })} placeholder="you@example.com" className="w-full rounded-lg border border-border bg-background px-4 py-2 text-foreground outline-none focus:ring-2 focus:ring-accent" />
                 </div>
-              </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label htmlFor="travelers" className="mb-2 block text-sm font-semibold text-foreground">Travelers</label>
+                    <select id="travelers" value={booking.travelers} onChange={(event) => setBooking({ ...booking, travelers: event.target.value })} className="w-full rounded-lg border border-border bg-background px-4 py-2 text-foreground outline-none focus:ring-2 focus:ring-accent">
+                      {[1, 2, 3, 4, 5, 6].map((number) => <option key={number} value={number}>{number}</option>)}
+                    </select>
+                  </div>
+                  <div>
+                    <label htmlFor="departureDate" className="mb-2 block text-sm font-semibold text-foreground">Departure</label>
+                    <input id="departureDate" required type="date" value={booking.departureDate} onChange={(event) => setBooking({ ...booking, departureDate: event.target.value })} min={new Date().toISOString().split('T')[0]} className="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground outline-none focus:ring-2 focus:ring-accent" />
+                  </div>
+                </div>
+                <div>
+                  <label htmlFor="phone" className="mb-2 block text-sm font-semibold text-foreground">Phone number</label>
+                  <input id="phone" required type="tel" value={booking.phone} onChange={(event) => setBooking({ ...booking, phone: event.target.value })} placeholder="+1 555 000 0000" className="w-full rounded-lg border border-border bg-background px-4 py-2 text-foreground outline-none focus:ring-2 focus:ring-accent" />
+                </div>
+                <div>
+                  <label htmlFor="notes" className="mb-2 block text-sm font-semibold text-foreground">Special requests <span className="font-normal text-muted-foreground">(optional)</span></label>
+                  <textarea id="notes" rows={3} value={booking.notes} onChange={(event) => setBooking({ ...booking, notes: event.target.value })} placeholder="Tell us anything we should know" className="w-full resize-none rounded-lg border border-border bg-background px-4 py-2 text-foreground outline-none focus:ring-2 focus:ring-accent" />
+                </div>
 
-              {/* CTA Buttons */}
-              <div className="space-y-3 pt-4 border-t border-border">
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full bg-accent text-accent-foreground py-3 rounded-lg font-bold hover:bg-accent/90 transition-colors"
-                >
-                  Book Now
-                </motion.button>
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full bg-background border-2 border-accent text-accent py-3 rounded-lg font-bold hover:bg-accent/10 transition-colors"
-                >
-                  Ask a Question
-                </motion.button>
-              </div>
+                <div className="space-y-3 border-t border-border pt-4">
+                  <motion.button type="submit" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full rounded-lg bg-accent py-3 font-bold text-accent-foreground transition-colors hover:bg-accent/90">{bookingStatus === 'success' ? 'Booking saved' : 'Book Now'}</motion.button>
+                  <button type="button" onClick={() => { window.localStorage.removeItem(`wanderlust-booking-${place.slug}`); setBooking({ fullName: '', email: '', phone: '', travelers: '1', departureDate: '', notes: '' }); setBookingStatus('idle') }} className="w-full text-sm font-semibold text-muted-foreground hover:text-foreground">Clear saved details</button>
+                </div>
+                {bookingStatus === 'success' && <p role="status" className="rounded-lg bg-accent/10 p-3 text-center text-sm font-medium text-foreground">Your request is saved on this device. We&apos;ll contact you to confirm availability.</p>}
+              </form>
 
               {/* Trust Badge */}
               <div className="bg-accent/10 border border-accent/20 rounded-lg p-4 text-center text-sm">

@@ -97,7 +97,6 @@ export default function PlaceDetail() {
             <span className="font-semibold">Back</span>
           </button>
         </Link>
-        </Link>
       </motion.div>
 
       {/* Hero Section with Gallery */}

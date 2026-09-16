@@ -39,6 +39,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
+import { createBooking } from "@/app/actions/bookings"
 
 // Booking form data interface
 interface BookingFormData {
@@ -383,6 +384,8 @@ function BookingForm({ destination }: { destination: NonNullable<ReturnType<type
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [confirmationCode, setConfirmationCode] = useState('')
+  const [submitError, setSubmitError] = useState('')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -392,9 +395,25 @@ function BookingForm({ destination }: { destination: NonNullable<ReturnType<type
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    setIsSubmitting(false)
-    setIsSubmitted(true)
+    setSubmitError('')
+    try {
+      const result = await createBooking({
+        catalogType: 'destination',
+        catalogSlug: destination.id,
+        fullName: `${formData.firstName} ${formData.lastName}`.trim(),
+        email: formData.email,
+        phone: formData.phone,
+        travelers: formData.travelers,
+        departureDate: formData.preferredDate,
+        notes: formData.specialRequests,
+      })
+      setConfirmationCode(result.confirmationCode)
+      setIsSubmitted(true)
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : 'We could not submit your booking. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   if (isSubmitted) {
@@ -416,6 +435,7 @@ function BookingForm({ destination }: { destination: NonNullable<ReturnType<type
         <p className="text-muted-foreground mb-6">
           Thank you for your booking request for {destination.name}. Our travel experts will contact you within 24 hours to confirm your reservation and discuss the details of your {destination.duration} trip.
         </p>
+        <p className="mb-6 rounded-xl bg-primary/10 px-4 py-3 text-sm font-semibold">Confirmation reference: {confirmationCode}</p>
         <div className="space-y-3">
           <Link href={`/destinations/${destination.id}`}>
             <Button className="w-full rounded-full gap-2">
@@ -597,6 +617,8 @@ function BookingForm({ destination }: { destination: NonNullable<ReturnType<type
           I agree to the booking terms and cancellation policy. I understand that this is a booking request and confirmation is subject to availability.
         </Label>
       </motion.div>
+
+      {submitError && <p role="alert" className="rounded-xl border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive">{submitError}</p>}
 
       {/* Submit Button */}
       <motion.div variants={fadeInUp}>

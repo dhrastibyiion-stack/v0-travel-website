@@ -21,7 +21,7 @@ export default async function AdminPage() {
   ]
 
   return (
-    <main className="min-h-screen bg-background px-4 py-10 text-foreground sm:px-8 lg:px-12">
+    <main className="min-h-screen overflow-x-hidden bg-background px-4 py-6 text-foreground sm:px-8 sm:py-10 lg:px-12">
       <div className="mx-auto max-w-7xl">
         <div className="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
           <div>
@@ -32,7 +32,7 @@ export default async function AdminPage() {
           <Link href="/" className="text-sm font-semibold text-primary hover:underline">Back to website</Link>
         </div>
 
-        <section className="mb-10 grid grid-cols-2 gap-3 lg:grid-cols-4">
+        <section className="mb-8 grid grid-cols-2 gap-3 sm:mb-10 lg:grid-cols-4">
           {stats.map(([label, value]) => (
             <div key={label} className="rounded-2xl border border-border bg-card p-5">
               <p className="text-sm text-muted-foreground">{label}</p>

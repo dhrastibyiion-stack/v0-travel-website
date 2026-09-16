@@ -116,7 +116,7 @@ export function Hero() {
             variants={titleVariants}
             initial="hidden"
             animate="visible"
-            className="max-w-5xl font-serif text-5xl font-bold leading-none text-white md:text-7xl lg:text-[6rem] xl:text-[7rem]"
+            className="max-w-5xl px-2 font-serif text-4xl font-bold leading-[0.95] text-white sm:text-5xl md:text-7xl lg:text-[6rem] xl:text-[7rem]"
           >
             <span className="block mb-2">
               {title1.split("").map((char, index) => (

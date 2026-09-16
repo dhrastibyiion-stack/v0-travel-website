@@ -90,8 +90,8 @@ export function Header({ variant = 'default' }: HeaderProps) {
             : "bg-transparent"
         }`}
       >
-        <nav className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="flex h-20 items-center justify-between">
+        <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex h-16 items-center justify-between sm:h-20">
             {/* Logo */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}

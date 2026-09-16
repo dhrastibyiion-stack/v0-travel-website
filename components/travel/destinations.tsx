@@ -162,7 +162,7 @@ export function Destinations() {
             Popular Destinations
           </motion.p>
           
-          <h2 className="font-serif text-3xl md:text-5xl lg:text-7xl font-bold text-foreground">
+          <h2 className="font-serif text-3xl font-bold leading-tight text-foreground sm:text-4xl md:text-5xl lg:text-7xl">
             <TextReveal delay={0.2}>Explore Our Top</TextReveal>
             <br />
             <span className="text-primary">

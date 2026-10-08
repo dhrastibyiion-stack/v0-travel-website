@@ -18,7 +18,7 @@ import { LiveChat } from "@/components/travel/live-chat"
 export default function TravelHomePage() {
   return (
     <SmoothScroll>
-      <main className="relative min-h-screen md:cursor-none">
+      <main className="relative min-h-screen">
         <CustomCursor />
         <ScrollProgress />
         <Header />

@@ -66,7 +66,7 @@ export function Places() {
         >
           {places.map((place, index) => (
             <motion.div key={place.id} variants={itemVariants}>
-              <Link href={`/destinations?continent=${place.continent}`}>
+              <Link className="block cursor-pointer" href={`/destinations?continent=${place.continent}`}>
                 <div className="group relative h-96 rounded-2xl overflow-hidden cursor-pointer bg-card shadow-lg hover:shadow-2xl transition-shadow duration-300">
                   {/* Image Container */}
                   <div className="relative w-full h-full">

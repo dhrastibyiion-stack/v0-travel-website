@@ -33,6 +33,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Badge } from "@/components/ui/badge"
 import { createBooking } from "@/app/actions/bookings"
+import { BookingTicket } from "@/components/travel/booking-ticket"
 
 // Map slugs to hero images
 const heroImages: Record<string, string> = {
@@ -239,6 +240,7 @@ function BookingForm({ experience }: { experience: NonNullable<ReturnType<typeof
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [confirmationCode, setConfirmationCode] = useState('')
+  const [ticketTotal, setTicketTotal] = useState(0)
   const [submitError, setSubmitError] = useState('')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -262,6 +264,7 @@ function BookingForm({ experience }: { experience: NonNullable<ReturnType<typeof
         notes: formData.specialRequests,
       })
       setConfirmationCode(result.confirmationCode)
+      setTicketTotal(result.totalCents)
       setIsSubmitted(true)
     } catch (error) {
       setSubmitError(error instanceof Error ? error.message : 'We could not submit your booking. Please try again.')
@@ -285,12 +288,13 @@ function BookingForm({ experience }: { experience: NonNullable<ReturnType<typeof
         >
           <Check className="h-10 w-10 text-primary" />
         </motion.div>
-        <h3 className="text-2xl font-bold mb-2">Booking Request Sent!</h3>
+        <h3 className="mb-2 text-2xl font-bold">Your booking is done!</h3>
         <p className="text-muted-foreground mb-6">
           Thank you for your booking request for {experience.title}. Our team will contact you within 24 hours to confirm your reservation and discuss the details.
         </p>
-        <p className="mb-6 rounded-xl bg-primary/10 px-4 py-3 text-sm font-semibold">Confirmation reference: {confirmationCode}</p>
-        <div className="space-y-3">
+        <p className="mb-6 rounded-xl bg-primary/10 px-4 py-3 text-sm font-semibold">Your ticket has been generated: {confirmationCode}</p>
+        <BookingTicket confirmationCode={confirmationCode} tripName={experience.title} fullName={`${formData.firstName} ${formData.lastName}`.trim()} email={formData.email} travelers={formData.travelers} departureDate={formData.preferredDate} totalCents={ticketTotal} currency="USD" />
+        <div className="space-y-3 print:hidden">
           <Link href={`/experiences/${experience.slug}`}>
             <Button className="w-full rounded-full gap-2">
               Return to Experience

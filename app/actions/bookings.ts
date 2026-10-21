@@ -28,7 +28,9 @@ export async function createBooking(input: z.input<typeof bookingSchema>) {
       ? await db.select({ name: travelPlaces.name, priceCents: travelPlaces.priceCents, currency: travelPlaces.currency }).from(travelPlaces).where(and(eq(travelPlaces.slug, values.catalogSlug), eq(travelPlaces.isPublished, true))).limit(1)
       : await db.select({ name: travelExperiences.name, priceCents: travelExperiences.priceCents, currency: travelExperiences.currency }).from(travelExperiences).where(and(eq(travelExperiences.slug, values.catalogSlug), eq(travelExperiences.isPublished, true))).limit(1)
 
-  if (!catalog[0]) throw new Error('This travel offering is not currently available.')
+  if (!catalog[0]) {
+    throw new Error('This travel offering is not available in the CMS yet. Please choose a published offering.')
+  }
   const item = catalog[0]
   const confirmationCode = `WL-${randomBytes(4).toString('hex').toUpperCase()}`
   const [booking] = await db.insert(travelBookings).values({

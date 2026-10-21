@@ -143,6 +143,22 @@
   }
 }
 
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+  .booking-ticket, .booking-ticket * {
+    visibility: visible !important;
+  }
+  .booking-ticket {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    border: 0;
+    box-shadow: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     scroll-behavior: auto !important;
